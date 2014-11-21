@@ -1,0 +1,26 @@
+playlist = {
+	_etag: 0,
+	_id: "http://playlists.fakepods.com/r1",
+	_owner: "http://playlists.fakepods.com",
+	isPlaylist: true,
+	name: "myplaylist",
+	songs: [
+		fbId: "/m/0lmtk3"
+	]
+}
+
+userSong = {
+	isSong: ,
+	inPlaylistEntry: ,
+	onPlaylist: ,
+	fbId: ,
+	sortOrder: ,
+	dateAdded: 
+}
+
+song = {
+	name: ,
+	type: /music/recording,
+	artist: Object id,
+	id: "/m/0lmtk3"
+}

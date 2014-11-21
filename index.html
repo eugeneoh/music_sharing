@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Share Playlists</title>
+        <link rel="stylesheet" href="master.css" />
+        <script src="http://crosscloud.org/0.1.1/crosscloud.js"></script> 
+        <script src = "jquery-1.9.0.min.js"></script>
+        <script src = "./test.js"></script>
+	</head>
+	<body>
+        <h2 id="title">My Playlists</h2>
+        <div id="new-playlist-box" style="margin-bottom: 20px; margin-top: 20px;">
+            Playlist Name: <input type="text" id="playlist-name">
+            <button type="submit" id="create-playlist">Create</button>
+        </div>
+        <div id="search-song-box" style="margin-bottom: 20px; margin-top: 20px;" class="hidden">
+            Song Name: <input type="text" id="song-name">
+            Artist: <input type="text" id="artist-name">
+            <button type="submit" id="search-song">Add Song</button>
+        </div>
+        <div id="playlists">
+        </div>
+        <div id="songs" class="hidden">
+        </div>
+        <div id="search-songs-results" class="hidden">
+        </div>
+	</body>
+</html>

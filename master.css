@@ -1,0 +1,11 @@
+.hidden {
+	display: none;
+}
+.playlist {
+	cursor: pointer;
+	margin: 3px;
+}
+
+#title {
+	cursor: pointer;
+}
