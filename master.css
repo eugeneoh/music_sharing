@@ -1,11 +1,20 @@
 .hidden {
 	display: none;
 }
-.playlist {
+.list-group-item {
 	cursor: pointer;
-	margin: 3px;
+}
+
+.list-group {
+	width: 300px;
 }
 
 #title {
 	cursor: pointer;
+}
+
+#ytplayer {
+	position: absolute;
+	right: 100px;
+	top: 100px;
 }

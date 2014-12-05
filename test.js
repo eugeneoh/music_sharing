@@ -25,7 +25,6 @@ $( document ).ready(function () {
 	var songs = $("#songs");
 	var title = $('#title');
 	// console.log(pod);
-
 	title.click(function() {
 		songs.empty();
 		playlists.toggleClass('hidden');
@@ -52,11 +51,9 @@ $( document ).ready(function () {
 			songsAlreadyInPlaylist.push(songs.children()[i].getAttribute('id'));
 		}
 		var songName = $("#song-name").val();
-		var artistName = $('#artist-name').val();
 		$('#song-name').val('');
-		$('#artist-name').val('');
 		console.log(songName);
-		var query = [{"type":"/music/recording","id":null,"name":songName,'artist':artistName}];
+		var query = [{"type":"/music/recording","id":null,"name":songName}];
 		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		// songs.empty();
 		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
@@ -88,7 +85,7 @@ $( document ).ready(function () {
 	}
 
 	function addPlaylist(item) {
-		var div = $('<div>', {text: item.name, id: item._id, class:"playlist"});
+		var div = $('<li>', {text: item.name, id: item._id, class:"list-group-item"});
 		div.click(function() {
 			// console.log($(this).attr('id'));
 			console.log($(this).attr('id'));
@@ -98,11 +95,11 @@ $( document ).ready(function () {
 			playlists.toggleClass('hidden');
 			songs.toggleClass('hidden');
 			searchSongs.data('playlist-id', $(this).attr('id'));
-			// title.val($(this).text);
 			pod.query()
 				.filter({_id: $(this).attr('id')})
 				.onAllResults(function(items) {
 					console.log(items);
+					songs.empty();
 					displaySongsInPlaylist(items[0]);
 					// console.log(items);
 				}).start();
@@ -124,7 +121,11 @@ $( document ).ready(function () {
 		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
 			$.each(response.result, function(i, song){
 				console.log(song.artist);
-				$('<div>',{text:song.name + " by " + song.artist, id: song.id}).appendTo(songs);
+				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
+				newItem.click(function() {
+					$('#ytplayer').toggleClass('hidden');
+				});
+				newItem.appendTo(songs);
 			});
 		});
 	}
