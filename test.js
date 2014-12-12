@@ -26,6 +26,12 @@ $( document ).ready(function () {
 	var songs = $("#songs");
 	var title = $('#title');
 	// console.log(pod);
+	$('#hide-video').click(function() {
+		if (videoOnScreen) {
+			$('#ytplayer').toggleClass('hidden');
+			videoOnScreen = false;
+		}
+	});
 	title.click(function() {
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
@@ -152,6 +158,7 @@ $( document ).ready(function () {
 						}
 						else {
 							$('#ytplayer').toggleClass('hidden');
+							$('#hide-video').toggleClass('hidden');
 						}
 						videoOnScreen = true;
 					}
