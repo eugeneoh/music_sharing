@@ -136,6 +136,7 @@ $( document ).ready(function () {
 	}
 
 	function displaySongsInPlaylist(item) {
+		songs.empty();
 		console.log(item);
 		for (i in item.songs) {
 			console.log(item.songs[i]);
