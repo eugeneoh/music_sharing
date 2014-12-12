@@ -86,7 +86,6 @@ $( document ).ready(function () {
 		// pod.query().pattern({isPlaylist: true});
 		pod.query()
 			.filter({
-				_owner: "http://eugene.fakepods.com",
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
