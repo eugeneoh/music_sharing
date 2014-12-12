@@ -26,6 +26,7 @@ $( document ).ready(function () {
 	var title = $('#title');
 	// console.log(pod);
 	title.click(function() {
+		$('#ytplayer').toggleClass('hidden');
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
 		songs.toggleClass('hidden');
