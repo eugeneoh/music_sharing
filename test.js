@@ -1,4 +1,5 @@
 $( document ).ready(function () {
+	var videoOnScreen = false;
 	var pod = crosscloud.connect();
 	var playlists = $("#playlists");
 	var newPlaylistName = $('#playlist-name');
@@ -26,7 +27,9 @@ $( document ).ready(function () {
 	var title = $('#title');
 	// console.log(pod);
 	title.click(function() {
-		$('#ytplayer').toggleClass('hidden');
+		if(videoOnScreen) {
+			$('#ytplayer').toggleClass('hidden');
+		}
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
 		songs.toggleClass('hidden');
@@ -145,7 +148,9 @@ $( document ).ready(function () {
 				console.log(song.artist);
 				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
 				newItem.click(function() {
-					$('#ytplayer').toggleClass('hidden');
+					if (!videoOnScreen)) {
+						$('#ytplayer').toggleClass('hidden');
+					}
 				});
 				newItem.appendTo(songs);
 			});
