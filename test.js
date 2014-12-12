@@ -45,9 +45,12 @@ $( document ).ready(function () {
 	addSongBtn.click(function() {
 		console.log("addsongbtn clicked");
 		var songsAlreadyInPlaylist = [];
-		for (var i=0; i<songs.children().length; i++) {
-			console.log(songs.children()[i].getAttribute('id'));
-			songsAlreadyInPlaylist.push(songs.children()[i].getAttribute('id'));
+		if (songs.children().length > 0) {
+			console.log(songs.children().length);
+			for (var i=0; i<songs.children().length; i++) {
+				console.log(songs.children()[i].getAttribute('id'));
+				songsAlreadyInPlaylist.push(songs.children()[i].getAttribute('id'));
+			}
 		}
 		var songName = $("#song-name").val();
 		var artistName = $('#song-artist').val();
