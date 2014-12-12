@@ -114,6 +114,7 @@ $( document ).ready(function () {
 			else{
 				console.log('different playlist id');
 				console.log($(this).attr('id'));
+				songs.empty();
 				title.text($(this).text());
 				searchSongs.toggleClass('hidden');
 				createPlaylistBox.toggleClass('hidden');
@@ -124,7 +125,6 @@ $( document ).ready(function () {
 					.filter({_id: $(this).attr('id')})
 					.onAllResults(function(items) {
 						console.log(items);
-						songs.empty();
 						displaySongsInPlaylist(items[0]);
 						// cons
 						console.log(items);
