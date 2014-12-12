@@ -148,7 +148,7 @@ $( document ).ready(function () {
 				console.log(song.artist);
 				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
 				newItem.click(function() {
-					if (!videoOnScreen)) {
+					if (!videoOnScreen) {
 						$('#ytplayer').toggleClass('hidden');
 					}
 				});
