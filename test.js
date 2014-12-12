@@ -134,7 +134,7 @@ $( document ).ready(function () {
 	}
 
 	function searchSong(songId) {
-		var query = [{"type":"/music/recording","id":songId,"name":null,"artist":null}];
+		var query = [{"type":"/music/recording","id":songId,"name":null,"artist":null,"key":"AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE"}];
 		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
 			$.each(response.result, function(i, song){
