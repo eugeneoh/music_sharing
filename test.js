@@ -27,9 +27,6 @@ $( document ).ready(function () {
 	var title = $('#title');
 	// console.log(pod);
 	title.click(function() {
-		if(videoOnScreen) {
-			$('#ytplayer').toggleClass('hidden');
-		}
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
 		songs.toggleClass('hidden');
@@ -147,9 +144,16 @@ $( document ).ready(function () {
 			$.each(response.result, function(i, song){
 				console.log(song.artist);
 				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
+				newItem.data('song-name', song.name);
 				newItem.click(function() {
 					if (!videoOnScreen) {
-						$('#ytplayer').toggleClass('hidden');
+						if ($(this).data('song-name') == 'Breezeblocks') {
+							$('#breezeblocks').toggleClass('hidden');
+						}
+						else {
+							$('#ytplayer').toggleClass('hidden');
+						}
+						videoOnScreen = true;
 					}
 				});
 				newItem.appendTo(songs);
