@@ -158,6 +158,7 @@ $( document ).ready(function () {
 							$('#breezeblocks').toggleClass('hidden');
 						}
 						else {
+							console.log("this should show video");
 							$('#ytplayer').toggleClass('hidden');
 							$('#hide-video').toggleClass('hidden');
 						}
