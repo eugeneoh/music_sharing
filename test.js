@@ -56,10 +56,10 @@ $( document ).ready(function () {
 		var artistName = $('#song-artist').val();
 		$('#song-name').val('');
 		$('#song-artist').val('');
-		var query = [{"type":"/music/recording","id":null,"name":songName,"artist":artistName,"key":"AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE"}];
+		var query = [{"type":"/music/recording","id":null,"name":songName,"artist":artistName}];
 		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		// songs.empty();
-		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
+		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query),key:'AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE'}, function(response) {
 			console.log(response);
 			songsAlreadyInPlaylist.push(response.result[0].id);
 			// $('<div>',{text:response.result[0].name + " by " + response.result[0].artist, id: response.result[0].id}).appendTo(songs);
@@ -137,9 +137,9 @@ $( document ).ready(function () {
 	}
 
 	function searchSong(songId) {
-		var query = [{"type":"/music/recording","id":songId,"name":null,"artist":null,"key":"AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE"}];
+		var query = [{"type":"/music/recording","id":songId,"name":null,"artist":null}];
 		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
+		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query),key:'AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE'}, function(response) {
 			$.each(response.result, function(i, song){
 				console.log(song.artist);
 				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
