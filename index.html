@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Share Playlists</title>
+    <head>
+        <title>Share Playlists</title>
         <link rel="stylesheet" href="master.css" />
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/freebase/suggest/4_1/suggest.min.css" />
-        <script src="http://crosscloud.org/0.1.1/crosscloud.js"></script> 
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+        <script src="http://crosscloud.org/0.1.2/crosscloud.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- // <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
         <script src = "./test.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/freebase/suggest/4_1/suggest.min.js"></script>
         <script type="text/javascript">
-            $(function() {
-                $("#song-name").suggest({filter:'(all type:/music/recording)'});
-            });
-        </script>
-	</head>
-	<body>
+        //     $(function() {
+        //         $("#song-name").suggest({filter:'(all type:/music/recording)'});
+        //     });
+        // </script>
+    </head>
+    <body>
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-brand" id="title">My Playlists</div>
             <form class="navbar-form navbar-left hidden" id="search-song-box" role="Search">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="song-name" placeholder="Search for song">
+                    <input type="text" class="form-control" id="song-name" placeholder="Song Name">
                 </div>
-                <button type="submit" class="btn btn-default" id="search-song">Add Song</button>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="song-artist" placeholder="Artist Name">
+                </div>
+                <button type="button" class="btn btn-default" id="search-song">Add Song</button>
             </form>
             <form class="navbar-form navbar-left" id="new-playlist-box">
                 <div class="form-group">
@@ -40,7 +43,7 @@
         <ul class="list-group hidden" id="search-songs-results">
         </ul>
         <iframe id="ytplayer" class="hidden" type="text/html" width="640" height="390"
-        src="http://www.youtube.com/embed/JznXx1Ns374?autoplay=0"
+        src="http://www.youtube.com/embed/zedtwKHqGqQ?autoplay=0"
         frameborder="0"/>
-	</body>
+    </body>
 </html>

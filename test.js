@@ -26,7 +26,6 @@ $( document ).ready(function () {
 	var title = $('#title');
 	// console.log(pod);
 	title.click(function() {
-		songs.empty();
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
 		songs.toggleClass('hidden');
@@ -41,25 +40,28 @@ $( document ).ready(function () {
 			name: newPlaylistName.val(),
 			songs:[]
 		});
-		getPlaylists();
 	});
 
 	addSongBtn.click(function() {
+		console.log("addsongbtn clicked");
 		var songsAlreadyInPlaylist = [];
 		for (var i=0; i<songs.children().length; i++) {
 			console.log(songs.children()[i].getAttribute('id'));
 			songsAlreadyInPlaylist.push(songs.children()[i].getAttribute('id'));
 		}
 		var songName = $("#song-name").val();
+		var artistName = $('#song-artist').val();
 		$('#song-name').val('');
-		console.log(songName);
-		var query = [{"type":"/music/recording","id":null,"name":songName}];
+		$('#song-artist').val('');
+		var query = [{"type":"/music/recording","id":null,"name":songName,"artist":artistName}];
 		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		// songs.empty();
 		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
+			console.log(response);
 			songsAlreadyInPlaylist.push(response.result[0].id);
 			// $('<div>',{text:response.result[0].name + " by " + response.result[0].artist, id: response.result[0].id}).appendTo(songs);
 			songs.empty();
+			console.log(songsAlreadyInPlaylist);
 			pod.push({
 				_id: searchSongs.data('playlist-id'),
 				songs: songsAlreadyInPlaylist
@@ -73,7 +75,10 @@ $( document ).ready(function () {
 		console.log("getPlaylists called");
 		// pod.query().pattern({isPlaylist: true});
 		pod.query()
-			.filter({isPlaylist: true})
+			.filter({
+				_owner: "http://eugene.fakepods.com",
+				isPlaylist: true
+			})
 			.onAllResults(function(items) {
 				console.log(items);
 				playlists.empty();
@@ -88,21 +93,34 @@ $( document ).ready(function () {
 		var div = $('<li>', {text: item.name, id: item._id, class:"list-group-item"});
 		div.click(function() {
 			// console.log($(this).attr('id'));
-			console.log($(this).attr('id'));
-			title.text($(this).text());
-			searchSongs.toggleClass('hidden');
-			createPlaylistBox.toggleClass('hidden');
-			playlists.toggleClass('hidden');
-			songs.toggleClass('hidden');
-			searchSongs.data('playlist-id', $(this).attr('id'));
-			pod.query()
-				.filter({_id: $(this).attr('id')})
-				.onAllResults(function(items) {
-					console.log(items);
-					songs.empty();
-					displaySongsInPlaylist(items[0]);
-					// console.log(items);
-				}).start();
+			if (searchSongs.data('playlist-id') == $(this).attr('id')) {
+				console.log('same playlist id');
+				title.text($(this).text());
+				searchSongs.toggleClass('hidden');
+				createPlaylistBox.toggleClass('hidden');
+				playlists.toggleClass('hidden');
+				songs.toggleClass('hidden');
+			}
+			else{
+				console.log('different playlist id');
+				console.log($(this).attr('id'));
+				title.text($(this).text());
+				searchSongs.toggleClass('hidden');
+				createPlaylistBox.toggleClass('hidden');
+				playlists.toggleClass('hidden');
+				songs.toggleClass('hidden');
+				searchSongs.data('playlist-id', $(this).attr('id'));
+				pod.query()
+					.filter({_id: $(this).attr('id')})
+					.onAllResults(function(items) {
+						console.log(items);
+						songs.empty();
+						displaySongsInPlaylist(items[0]);
+						// cons
+						console.log(items);
+					}).start();
+			}
+			
 		});
 		div.appendTo(playlists);
 	}
