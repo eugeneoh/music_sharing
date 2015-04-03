@@ -194,8 +194,12 @@ $(document).ready(function() {
 						text: playQueue[z].name,
 						id: playQueue[z].videoId
 					});
+					queueListCtn.data('song-queue-number', z);
 					queueListCtn.click(function(e) {
-
+						songQueueNumber = $(e.target).data('song-queue-number');
+						player.loadVideoById(playQueue[songQueueNumber]);
+						playQueue = playQueue.splice(songQueueNumber);
+						queueList.children()[songQueueNumber].remove();
 					});
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
