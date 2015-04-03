@@ -197,7 +197,7 @@ $(document).ready(function() {
 					queueListCtn.data('song-queue-number', z);
 					queueListCtn.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
-						player.loadVideoById(playQueue[songQueueNumber]);
+						player.loadVideoById(playQueue[songQueueNumber].videoId);
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
 					});
