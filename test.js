@@ -157,6 +157,7 @@ $(document).ready(function() {
 			});
 			newItem.appendTo(songs);
 		}
+		playQueue.push(playQueue.shift());
 	}
 
 	function searchSong(text) {
