@@ -7,6 +7,7 @@ $(document).ready(function() {
 	var searchSongs = $('#search-song-box');
 	var searchSongBtn = $('#search-song');
 	var searchResults = $('#search-results-list');
+	var shuffleBtn = $('#shuffle-songs');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -85,6 +86,11 @@ $(document).ready(function() {
 		// console.log(songsAlreadyInPlaylist);
 	});
 
+	shuffleBtn.click(function() {
+		initializePlayQueue();
+		shuffle(playQueue);
+	});
+
 	function getPlaylists() {
 		console.log("getPlaylists called");
 		pod.query()
@@ -154,10 +160,7 @@ $(document).ready(function() {
 			newItem.data('song-order-number', i);
 			playQueue.push(song.videoId);
 			newItem.click(function(e) {
-				playQueue = [];
-				for (x in currentPlaylistSongs) {
-					playQueue.push(currentPlaylistSongs[x]);
-				}
+				initializePlayQueue();
 				player.loadVideoById(e.target.id);
 				var tmp = [];
 				for (var i = 0; i <= $(e.target).data('song-order-number'); i++) {
@@ -239,6 +242,13 @@ $(document).ready(function() {
 		}
 
 		return array;
+	}
+
+	function initializePlayQueue() {
+		playQueue = [];
+		for (var i = 0; i < currentPlaylistSongs.length; i++) {
+			playQueue.push(currentPlaylistSongs[i].videoId);
+		}
 	}
 		// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
 		// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
