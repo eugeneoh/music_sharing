@@ -200,18 +200,18 @@ $(document).ready(function() {
 			});
 			songListItem.appendTo(songs);
 		}
-		for (z in playQueue) {
-			var queueListCtn = $('<li>');
-			var queueListItem = $('<a>', {
-				text: playQueue[z].name,
-				id: playQueue[z].videoId
-			});
-			queueListCtn.click(function(e) {
+		// for (z in playQueue) {
+		// 	var queueListCtn = $('<li>');
+		// 	var queueListItem = $('<a>', {
+		// 		text: playQueue[z].name,
+		// 		id: playQueue[z].videoId
+		// 	});
+		// 	queueListCtn.click(function(e) {
 
-			});
-			queueListCtn.append(queueListItem);
-			queueListCtn.appendTo(queueList);
-		}
+		// 	});
+		// 	queueListCtn.append(queueListItem);
+		// 	queueListCtn.appendTo(queueList);
+		// }
 	}
 
 	function searchSong(text) {
