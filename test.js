@@ -89,6 +89,7 @@ $(document).ready(function() {
 	shuffleBtn.click(function() {
 		initializePlayQueue();
 		shuffle(playQueue);
+		player.loadVideoById(playQueue.shift());
 	});
 
 	function getPlaylists() {
