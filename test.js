@@ -184,7 +184,7 @@ $(document).ready(function() {
 					tmp.push(playQueue.shift());
 				}
 				console.log('tmp is: ', tmp);
-				for (var j = 0; j < tmp.length-1; j++) {
+				for (var j = 0; j < tmp.length; j++) {
 					playQueue.push(tmp.shift());
 				}
 				for (var z = 0; z < playQueue.length; z++) {
