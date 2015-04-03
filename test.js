@@ -10,6 +10,7 @@ $(document).ready(function() {
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
+	var playQueue = [];
 	// pod.push({isPlaylist: true,
 	// 	name: "good playlist",
 	// 	songs: [
@@ -45,11 +46,16 @@ $(document).ready(function() {
 				'onStateChange': onPlayerStateChange
 			}
 		});
-		function onPlayerReady() {
+
+		function onPlayerReady(e) {
 			console.log('player is ready');
 		}
-		function onPlayerStateChange() {
+
+		function onPlayerStateChange(e) {
 			console.log('player state has changed');
+			if (e.data === YT.PlayerState.ENDED) {
+				player.loadVideoById(playQueue.shift());
+			}
 		}
 	};
 	title.click(function() {
@@ -58,7 +64,6 @@ $(document).ready(function() {
 		songs.toggleClass('hidden');
 		searchSongs.toggleClass('hidden');
 		title.text('My Playlists');
-		getPlaylists();
 	});
 
 	createPlaylistButton.click(function() {
@@ -82,7 +87,6 @@ $(document).ready(function() {
 
 	function getPlaylists() {
 		console.log("getPlaylists called");
-		// pod.query().pattern({isPlaylist: true});
 		pod.query()
 			.filter({
 				_owner: "http://music.fakepods.com",
@@ -114,6 +118,7 @@ $(document).ready(function() {
 				playlists.toggleClass('hidden');
 				songs.toggleClass('hidden');
 			} else {
+				songs.empty();
 				console.log('different playlist id');
 				console.log($(this).attr('id'));
 				title.text($(this).text());
@@ -127,7 +132,6 @@ $(document).ready(function() {
 						_id: $(this).attr('id')
 					})
 					.onAllResults(function(items) {
-						songs.empty();
 						displaySongsInPlaylist(items[0]);
 					}).start();
 			}
@@ -137,11 +141,17 @@ $(document).ready(function() {
 	}
 
 	function displaySongsInPlaylist(item) {
+		songs.empty();
 		currentPlaylistSongs = item.songs;
 		console.log(currentPlaylistSongs);
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
-			var newItem = $('<li>',{text:song.name, id: song.videoId, class:"list-group-item"});
+			var newItem = $('<li>', {
+				text: song.name,
+				id: song.videoId,
+				class: "list-group-item"
+			});
+			playQueue.push(song.videoId);
 			newItem.click(function(e) {
 				player.loadVideoById(e.target.id);
 			});
@@ -158,15 +168,22 @@ $(document).ready(function() {
 			console.log(resultArray);
 			if (resultArray.length === 0) {
 				searchResults.text('No results found');
-			}
-			else {
+			} else {
 				for (var i = 0; i < resultArray.length; i++) {
-					console.log(resultArray[i].snippet.title);
-					var searchResultItem = $('<div>', {class:"song-search-result"});
-					var searchResultTitle = $('<span>', {text: resultArray[i].snippet.title});
+					var searchResultItem = $('<div>', {
+						class: "song-search-result"
+					});
+					var searchResultTitle = $('<span>', {
+						text: resultArray[i].snippet.title
+					});
 					searchResultItem.append(searchResultTitle);
-					var addSongBtnCtn = $('<span>', {class: 'align-right'});
-					var addSongBtn = $('<span>', {class: 'glyphicon glyphicon-plus', id: resultArray[i].snippet.title});
+					var addSongBtnCtn = $('<span>', {
+						class: 'align-right'
+					});
+					var addSongBtn = $('<span>', {
+						class: 'glyphicon glyphicon-plus',
+						id: resultArray[i].snippet.title
+					});
 					addSongBtn.data('videoId', resultArray[i].id.videoId);
 					addSongBtn.click(function(e) {
 						var playlistID = searchSongs.data('playlist-id');
@@ -175,6 +192,8 @@ $(document).ready(function() {
 							videoId: $(e.target).data('videoId')
 						}
 						currentPlaylistSongs.push(tmp);
+						console.log(currentPlaylistSongs);
+						console.log(playlistID);
 						pod.push({
 							_id: playlistID,
 							songs: currentPlaylistSongs
@@ -188,6 +207,26 @@ $(document).ready(function() {
 				}
 			}
 		});
+	}
+
+	function shuffle(array) {
+		var currentIndex = array.length,
+			temporaryValue, randomIndex;
+
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+
+		return array;
 	}
 		// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
 		// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
