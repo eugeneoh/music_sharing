@@ -140,6 +140,7 @@ $(document).ready(function() {
 				songs.toggleClass('hidden');
 			} else {
 				songs.empty();
+				queueList.empty();
 				console.log('different playlist id');
 				console.log($(this).attr('id'));
 				title.text($(this).text());
