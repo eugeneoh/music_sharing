@@ -8,6 +8,7 @@ $(document).ready(function() {
 	var searchSongBtn = $('#search-song');
 	var searchResults = $('#search-results-list');
 	var shuffleBtn = $('#shuffle-songs');
+	var queueList = $('#queue-list');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -153,14 +154,17 @@ $(document).ready(function() {
 		console.log(currentPlaylistSongs);
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
-			var newItem = $('<li>', {
+			var songListItem = $('<li>', {
 				text: song.name,
 				id: song.videoId,
 				class: "list-group-item"
 			});
-			newItem.data('song-order-number', i);
+			songListItem.data('song-order-number', i);
 			playQueue.push(song.videoId);
-			newItem.click(function(e) {
+			var queueListCtn = $('<li>');
+			var queueListItem = $('<a>', {text: song.name, id: song.videoId});
+			queueListCtn.append(queueListItem);
+			songListItem.click(function(e) {
 				initializePlayQueue();
 				player.loadVideoById(e.target.id);
 				var tmp = [];
@@ -171,7 +175,8 @@ $(document).ready(function() {
 					playQueue.push(tmp.shift());
 				}
 			});
-			newItem.appendTo(songs);
+			songListItem.appendTo(songs);
+			queueListCtn.appendTo(queueList);
 		}
 	}
 

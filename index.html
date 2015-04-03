@@ -45,15 +45,22 @@
                 <button id="shuffle-songs" type="button" class="btn btn-warning"> Shuffle Playlist Songs
                 </button>
             </form>
-            <form class="navbar-form navbar-left" id="new-playlist-box">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="playlist-name" placeholder="New playlist name">
-                </div>
-                <button type="button" class="btn btn-default" id="create-playlist">Create</button>
-            </form>
-            <form class="navbar-form navbar-left hidden" id="hide-video">
-                <button type="button" class="btn btn-default navbar-left">Hide Video</button>
-            </form>
+          <form class="navbar-form navbar-left" id="new-playlist-box">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="playlist-name" placeholder="New playlist name">
+              </div>
+              <button type="button" class="btn btn-default" id="create-playlist">Create</button>
+          </form>
+          <form class="navbar-form navbar-left hidden" id="hide-video">
+              <button type="button" class="btn btn-default navbar-left">Hide Video</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right margin-right">
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Queue<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" id="queue-list">
+              </ul>
+            </li>
+          </ul>
         </nav>
         <ul class="list-group" id="playlists">
         </ul>

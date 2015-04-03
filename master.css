@@ -30,3 +30,7 @@
 .glyphicon {
 	cursor: pointer;
 }
+.margin-right {
+	position: absolute;
+	right: 40px;
+}
