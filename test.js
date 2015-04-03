@@ -195,10 +195,10 @@ $(document).ready(function() {
 						id: playQueue[z].videoId
 					});
 					queueListCtn.data('song-queue-number', z);
-					console.log(queueListCtn.data('song-queue-number'));
 					queueListCtn.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
 						console.log($(e.target));
+						console.log(songQueueNumber);
 						player.loadVideoById(playQueue[songQueueNumber].id);
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
