@@ -183,7 +183,8 @@ $(document).ready(function() {
 				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
 					tmp.push(playQueue.shift());
 				}
-				for (var j = 0; j < tmp.length; j++) {
+				console.log('tmp is: ', tmp);
+				for (var j = 0; j < tmp.length-1; j++) {
 					playQueue.push(tmp.shift());
 				}
 				for (var z = 0; z < playQueue.length; z++) {
@@ -198,7 +199,7 @@ $(document).ready(function() {
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
 				}
-				console.log(playQueue);
+				console.log('playQueue is: ', playQueue);
 			});
 			songListItem.appendTo(songs);
 		}
