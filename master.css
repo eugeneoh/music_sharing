@@ -18,3 +18,15 @@
 	right: 100px;
 	top: 100px;
 }
+.song-search-result {
+	margin: 5px;
+	border-bottom: 1px solid black;
+	margin-top: 2px;
+}
+.align-right {
+	position: absolute;
+	right: 25px;
+}
+.glyphicon {
+	cursor: pointer;
+}

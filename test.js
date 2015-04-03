@@ -1,12 +1,15 @@
-$( document ).ready(function () {
-	var videoOnScreen = false;
+$(document).ready(function() {
 	var pod = crosscloud.connect();
 	var playlists = $("#playlists");
 	var newPlaylistName = $('#playlist-name');
 	var createPlaylistBox = $('#new-playlist-box');
 	var createPlaylistButton = $('#create-playlist');
 	var searchSongs = $('#search-song-box');
-	var addSongBtn = $('#search-song');
+	var searchSongBtn = $('#search-song');
+	var searchResults = $('#search-results-list');
+	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
+	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
+	var currentPlaylistSongs = [];
 	// pod.push({isPlaylist: true,
 	// 	name: "good playlist",
 	// 	songs: [
@@ -25,13 +28,30 @@ $( document ).ready(function () {
 	// console.log(getPlaylists());
 	var songs = $("#songs");
 	var title = $('#title');
+	var player;
 	// console.log(pod);
-	$('#hide-video').click(function() {
-		if (videoOnScreen) {
-			$('#ytplayer').toggleClass('hidden');
-			videoOnScreen = false;
+	window.onYouTubeIframeAPIReady = function() {
+		//console.log('youtube api ready');
+		player = new YT.Player('ytplayer', {
+			height: '366',
+			width: '600',
+			// videoId: 'e-ORhEE9VVg',
+			playerVars: {
+				autoplay: 0,
+				html5: 1
+			},
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+		function onPlayerReady() {
+			console.log('player is ready');
 		}
-	});
+		function onPlayerStateChange() {
+			console.log('player state has changed');
+		}
+	};
 	title.click(function() {
 		playlists.toggleClass('hidden');
 		createPlaylistBox.toggleClass('hidden');
@@ -45,38 +65,17 @@ $( document ).ready(function () {
 		pod.push({
 			isPlaylist: true,
 			name: newPlaylistName.val(),
-			songs:[]
+			songs: []
 		});
 	});
 
-	addSongBtn.click(function() {
-		console.log("addsongbtn clicked");
-		var songsAlreadyInPlaylist = [];
-		if (songs.children().length > 0) {
-			console.log(songs.children().length);
-			for (var i=0; i<songs.children().length; i++) {
-				console.log(songs.children()[i].getAttribute('id'));
-				songsAlreadyInPlaylist.push(songs.children()[i].getAttribute('id'));
-			}
-		}
+	searchSongBtn.click(function() {
 		var songName = $("#song-name").val();
 		var artistName = $('#song-artist').val();
 		$('#song-name').val('');
 		$('#song-artist').val('');
-		var query = [{"type":"/music/recording","id":null,"name":songName,"artist":artistName}];
-		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-		// songs.empty();
-		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query),key:'AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE'}, function(response) {
-			console.log(response);
-			songsAlreadyInPlaylist.push(response.result[0].id);
-			// $('<div>',{text:response.result[0].name + " by " + response.result[0].artist, id: response.result[0].id}).appendTo(songs);
-			songs.empty();
-			console.log(songsAlreadyInPlaylist);
-			pod.push({
-				_id: searchSongs.data('playlist-id'),
-				songs: songsAlreadyInPlaylist
-			});
-		});
+		searchSong(songName + ' ' + artistName);
+
 		// console.log(searchSongs.data('playlist-id'));
 		// console.log(songsAlreadyInPlaylist);
 	});
@@ -86,6 +85,7 @@ $( document ).ready(function () {
 		// pod.query().pattern({isPlaylist: true});
 		pod.query()
 			.filter({
+				_owner: "http://music.fakepods.com",
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
@@ -99,7 +99,11 @@ $( document ).ready(function () {
 	}
 
 	function addPlaylist(item) {
-		var div = $('<li>', {text: item.name, id: item._id, class:"list-group-item"});
+		var div = $('<li>', {
+			text: item.name,
+			id: item._id,
+			class: "list-group-item"
+		});
 		div.click(function() {
 			// console.log($(this).attr('id'));
 			if (searchSongs.data('playlist-id') == $(this).attr('id')) {
@@ -109,11 +113,9 @@ $( document ).ready(function () {
 				createPlaylistBox.toggleClass('hidden');
 				playlists.toggleClass('hidden');
 				songs.toggleClass('hidden');
-			}
-			else{
+			} else {
 				console.log('different playlist id');
 				console.log($(this).attr('id'));
-				songs.empty();
 				title.text($(this).text());
 				searchSongs.toggleClass('hidden');
 				createPlaylistBox.toggleClass('hidden');
@@ -121,59 +123,78 @@ $( document ).ready(function () {
 				songs.toggleClass('hidden');
 				searchSongs.data('playlist-id', $(this).attr('id'));
 				pod.query()
-					.filter({_id: $(this).attr('id')})
+					.filter({
+						_id: $(this).attr('id')
+					})
 					.onAllResults(function(items) {
-						console.log(items);
+						songs.empty();
 						displaySongsInPlaylist(items[0]);
-						// cons
-						console.log(items);
 					}).start();
 			}
-			
+
 		});
 		div.appendTo(playlists);
 	}
 
 	function displaySongsInPlaylist(item) {
-		songs.empty();
-		console.log(item);
-		for (i in item.songs) {
-			console.log(item.songs[i]);
-			searchSong(item.songs[i]);
+		currentPlaylistSongs = item.songs;
+		console.log(currentPlaylistSongs);
+		for (i in currentPlaylistSongs) {
+			var song = currentPlaylistSongs[i];
+			var newItem = $('<li>',{text:song.name, id: song.videoId, class:"list-group-item"});
+			newItem.click(function(e) {
+				player.loadVideoById(e.target.id);
+			});
+			newItem.appendTo(songs);
 		}
 	}
 
-	function searchSong(songId) {
-		var query = [{"type":"/music/recording","id":songId,"name":null,"artist":null}];
-		var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-		$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query),key:'AIzaSyASiSl8UuN0g4qvFma54isfk9FqPtDIYTE'}, function(response) {
-			$.each(response.result, function(i, song){
-				console.log(song.artist);
-				var newItem = $('<li>',{text:song.name + " by " + song.artist, id: song.id, class:"list-group-item"});
-				newItem.data('song-name', song.name);
-				newItem.click(function() {
-					if (!videoOnScreen) {
-						if ($(this).data('song-name') == 'Breezeblocks') {
-							$('#breezeblocks').toggleClass('hidden');
+	function searchSong(text) {
+		var search_url = YOUTUBE_BASE_URL + 'search?part=snippet&type=video&maxResults=15&order=viewCount';
+		search_url = search_url + '&key=' + ytAPIkey + '&q="' + text + '"';
+		$.get(search_url).
+		success(function(data) {
+			var resultArray = data.items;
+			console.log(resultArray);
+			if (resultArray.length === 0) {
+				searchResults.text('No results found');
+			}
+			else {
+				for (var i = 0; i < resultArray.length; i++) {
+					console.log(resultArray[i].snippet.title);
+					var searchResultItem = $('<div>', {class:"song-search-result"});
+					var searchResultTitle = $('<span>', {text: resultArray[i].snippet.title});
+					searchResultItem.append(searchResultTitle);
+					var addSongBtnCtn = $('<span>', {class: 'align-right'});
+					var addSongBtn = $('<span>', {class: 'glyphicon glyphicon-plus', id: resultArray[i].snippet.title});
+					addSongBtn.data('videoId', resultArray[i].id.videoId);
+					addSongBtn.click(function(e) {
+						var playlistID = searchSongs.data('playlist-id');
+						var tmp = {
+							name: e.target.id,
+							videoId: $(e.target).data('videoId')
 						}
-						else {
-							console.log("this should show video");
-							$('#ytplayer').toggleClass('hidden');
-							$('#hide-video').toggleClass('hidden');
-						}
-						videoOnScreen = true;
-					}
-				});
-				newItem.appendTo(songs);
-			});
+						currentPlaylistSongs.push(tmp);
+						pod.push({
+							_id: playlistID,
+							songs: currentPlaylistSongs
+						});
+					});
+					addSongBtnCtn.append(addSongBtn);
+					searchResultItem.append(addSongBtnCtn);
+					// searchResultItem.append($('<img>', {src: resultArray[i].snippet.thumbnails.default.url}));
+
+					searchResultItem.appendTo(searchResults);
+				}
+			}
 		});
 	}
-	// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
-	// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-	// 	$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
-	// 		$.each(response.result, function(i,artist){
-	// 			console.log(artist);
-	// 			$('<div>',{text:artist.name}).appendTo(document.body);
- //        });
-	// });
+		// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
+		// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
+		// 	$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
+		// 		$.each(response.result, function(i,artist){
+		// 			console.log(artist);
+		// 			$('<div>',{text:artist.name}).appendTo(document.body);
+		//        });
+		// });
 });
