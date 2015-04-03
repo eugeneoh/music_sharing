@@ -175,32 +175,27 @@ $(document).ready(function() {
 			songListItem.data('song-order-number', i);
 			playQueue.push(song);
 			songListItem.click(function(e) {
-				if (playQueue.length === 0) {
-					initializePlayQueue();
-					player.loadVideoById(e.target.id);
-					playQueue.shift();
-					var tmp = [];
-					for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
-						tmp.push(playQueue.shift());
-					}
-					for (j in tmp) {
-						playQueue.push(tmp.shift());
-					}
-					for (z in playQueue) {
-						var queueListCtn = $('<li>');
-						var queueListItem = $('<a>', {
-							text: playQueue[z].name,
-							id: playQueue[z].videoId
-						});
-						queueListCtn.click(function(e) {
-
-						});
-						queueListCtn.append(queueListItem);
-						queueListCtn.appendTo(queueList);
-					}
+				initializePlayQueue();
+				player.loadVideoById(e.target.id);
+				playQueue.shift();
+				var tmp = [];
+				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
+					tmp.push(playQueue.shift());
 				}
-				else {
-					player.loadVideoById(e.target.id);
+				for (j in tmp) {
+					playQueue.push(tmp.shift());
+				}
+				for (z in playQueue) {
+					var queueListCtn = $('<li>');
+					var queueListItem = $('<a>', {
+						text: playQueue[z].name,
+						id: playQueue[z].videoId
+					});
+					queueListCtn.click(function(e) {
+
+					});
+					queueListCtn.append(queueListItem);
+					queueListCtn.appendTo(queueList);
 				}
 			});
 			songListItem.appendTo(songs);
