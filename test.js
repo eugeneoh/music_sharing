@@ -208,6 +208,7 @@ $(document).ready(function() {
 							videoId: $(e.target).data('videoId')
 						}
 						currentPlaylistSongs.push(tmp);
+						playQueue.push(tmp.videoId);
 						console.log(currentPlaylistSongs);
 						console.log(playlistID);
 						pod.push({
