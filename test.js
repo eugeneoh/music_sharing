@@ -199,7 +199,7 @@ $(document).ready(function() {
 						songQueueNumber = $(e.target).data('song-queue-number');
 						player.loadVideoById(playQueue[songQueueNumber]);
 						playQueue = playQueue.splice(songQueueNumber);
-						queueList.children()[songQueueNumber].remove();
+						$(queueList.children()[songQueueNumber]).remove();
 					});
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
