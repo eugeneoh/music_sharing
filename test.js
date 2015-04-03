@@ -174,17 +174,17 @@ $(document).ready(function() {
 			});
 			songListItem.appendTo(songs);
 		}
-		for (i in playQueue) {
+		for (z in playQueue) {
 			var queueListCtn = $('<li>');
 			var queueListItem = $('<a>', {
-				text: playQueue[i].name,
-				id: playQueue[i].videoId
+				text: playQueue[z].name,
+				id: playQueue[z].videoId
 			});
-			queueListCtn.append(queueListItem);
-			queueListCtn.appendTo(queueList);
 			queueListCtn.click(function(e) {
 
 			});
+			queueListCtn.append(queueListItem);
+			queueListCtn.appendTo(queueList);
 		}
 	}
 
