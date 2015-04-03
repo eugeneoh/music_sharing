@@ -180,13 +180,13 @@ $(document).ready(function() {
 				player.loadVideoById(e.target.id);
 				// playQueue.shift();
 				var tmp = [];
-				for (var i = 0; i <= $(e.target).data('song-order-number'); i++) {
+				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
 					tmp.push(playQueue.shift());
 				}
-				for (j in tmp) {
+				for (var j = 0; j < tmp.length; j++) {
 					playQueue.push(tmp.shift());
 				}
-				for (z in playQueue) {
+				for (var z = 0; z < playQueue.length; z++) {
 					var queueListCtn = $('<li>');
 					var queueListItem = $('<a>', {
 						text: playQueue[z].name,
