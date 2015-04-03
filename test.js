@@ -175,6 +175,7 @@ $(document).ready(function() {
 			songListItem.data('song-order-number', i);
 			playQueue.push(song);
 			songListItem.click(function(e) {
+				queueList.empty();
 				initializePlayQueue();
 				player.loadVideoById(e.target.id);
 				// playQueue.shift();
