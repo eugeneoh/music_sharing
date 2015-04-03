@@ -197,7 +197,7 @@ $(document).ready(function() {
 					queueListCtn.data('song-queue-number', z);
 					queueListCtn.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
-						console.log(songQueueNumber);
+						console.log(e.target);
 						player.loadVideoById(playQueue[songQueueNumber].videoId);
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
