@@ -202,6 +202,7 @@ $(document).ready(function() {
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
 						for (var i = songQueueNumber; i < queueList.children().length; i++) {
+							console.log(i);
 							$($(queueList.children()[i]).children()[0]).data('song-queue-number', i);
 						}
 						console.log(queueList.children());
