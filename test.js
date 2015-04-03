@@ -151,13 +151,24 @@ $(document).ready(function() {
 				id: song.videoId,
 				class: "list-group-item"
 			});
+			newItem.data('song-order-number', i);
 			playQueue.push(song.videoId);
 			newItem.click(function(e) {
+				playQueue = [];
+				for (x in currentPlaylistSongs) {
+					playQueue.push(currentPlaylistSongs[x]);
+				}
 				player.loadVideoById(e.target.id);
+				var tmp = [];
+				for (var i = 0; i <= $(e.target).data('song-order-number'); i++) {
+					tmp.push(playQueue.shift());
+				}
+				for (j in tmp) {
+					playQueue.push(tmp.shift());
+				}
 			});
 			newItem.appendTo(songs);
 		}
-		playQueue.push(playQueue.shift());
 	}
 
 	function searchSong(text) {
