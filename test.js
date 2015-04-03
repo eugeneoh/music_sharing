@@ -56,8 +56,10 @@ $(document).ready(function() {
 		function onPlayerStateChange(e) {
 			console.log('player state has changed');
 			if (e.data === YT.PlayerState.ENDED) {
-				player.loadVideoById(playQueue.shift().videoId);
-				queueList.children()[0].remove();
+				if (playQueue.length > 0) {
+					player.loadVideoById(playQueue.shift().videoId);
+					queueList.children()[0].remove();
+				}
 			}
 		}
 	};
@@ -91,7 +93,17 @@ $(document).ready(function() {
 	shuffleBtn.click(function() {
 		initializePlayQueue();
 		shuffle(playQueue);
+		queueList.empty();
 		player.loadVideoById(playQueue.shift().videoId);
+		for (s in playQueue) {
+			var queueListCtn = $('<li>');
+			var queueListItem = $('<a>', {
+				text: playQueue[s].name,
+				id: playQueue[s].videoId
+			});
+			queueListCtn.append(queueListItem);
+			queueListCtn.appendTo(queueList);
+		}
 	});
 
 	function getPlaylists() {
@@ -163,7 +175,7 @@ $(document).ready(function() {
 			songListItem.data('song-order-number', i);
 			playQueue.push(song);
 			songListItem.click(function(e) {
-				initializePlayQueue();
+				// initializePlayQueue();
 				player.loadVideoById(e.target.id);
 				playQueue.shift();
 				var tmp = [];
