@@ -165,8 +165,9 @@ $(document).ready(function() {
 			songListItem.click(function(e) {
 				initializePlayQueue();
 				player.loadVideoById(e.target.id);
+				playQueue.shift();
 				var tmp = [];
-				for (var i = 0; i <= $(e.target).data('song-order-number'); i++) {
+				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
 					tmp.push(playQueue.shift());
 				}
 				for (j in tmp) {
