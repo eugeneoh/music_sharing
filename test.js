@@ -195,10 +195,11 @@ $(document).ready(function() {
 						id: playQueue[z].videoId
 					});
 					queueListCtn.data('song-queue-number', z);
+					console.log(queueListCtn.data('song-queue-number'));
 					queueListCtn.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
-						console.log(e.target);
-						player.loadVideoById(playQueue[songQueueNumber].videoId);
+						console.log($(e.target));
+						player.loadVideoById(playQueue[songQueueNumber].id);
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
 					});
