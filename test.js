@@ -161,9 +161,6 @@ $(document).ready(function() {
 			});
 			songListItem.data('song-order-number', i);
 			playQueue.push(song.videoId);
-			var queueListCtn = $('<li>');
-			var queueListItem = $('<a>', {text: song.name, id: song.videoId});
-			queueListCtn.append(queueListItem);
 			songListItem.click(function(e) {
 				initializePlayQueue();
 				player.loadVideoById(e.target.id);
@@ -176,7 +173,18 @@ $(document).ready(function() {
 				}
 			});
 			songListItem.appendTo(songs);
+		}
+		for (i in playQueue) {
+			var queueListCtn = $('<li>');
+			var queueListItem = $('<a>', {
+				text: playQueue[i].name,
+				id: playQueue[i].videoId
+			});
+			queueListCtn.append(queueListItem);
 			queueListCtn.appendTo(queueList);
+			queueListCtn.click(function(e) {
+
+			});
 		}
 	}
 
@@ -252,11 +260,11 @@ $(document).ready(function() {
 	}
 
 	function initializePlayQueue() {
-		playQueue = [];
-		for (var i = 0; i < currentPlaylistSongs.length; i++) {
-			playQueue.push(currentPlaylistSongs[i].videoId);
+			playQueue = [];
+			for (var i = 0; i < currentPlaylistSongs.length; i++) {
+				playQueue.push(currentPlaylistSongs[i].videoId);
+			}
 		}
-	}
 		// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
 		// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		// 	$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
