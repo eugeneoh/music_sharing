@@ -57,7 +57,7 @@ $(document).ready(function() {
 			console.log('player state has changed');
 			if (e.data === YT.PlayerState.ENDED) {
 				player.loadVideoById(playQueue.shift().videoId);
-				playQueue.children()[0].remove();
+				queueList.children()[0].remove();
 			}
 		}
 	};
