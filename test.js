@@ -200,6 +200,7 @@ $(document).ready(function() {
 						console.log(e.target);
 						player.loadVideoById(playQueue[songQueueNumber].videoId);
 						playQueue = playQueue.splice(songQueueNumber);
+						console.log(playQueue);
 						$(queueList.children()[songQueueNumber]).remove();
 						for (var i = songQueueNumber; i < queueList.children().length; i++) {
 							console.log(i);
