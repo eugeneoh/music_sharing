@@ -185,7 +185,7 @@ $(document).ready(function() {
 				}
 				console.log('tmp is: ', tmp);
 				for (var j = 0; j < tmp.length; j++) {
-					playQueue.push(tmp.shift());
+					playQueue.push(tmp[j]);
 				}
 				for (var z = 0; z < playQueue.length; z++) {
 					var queueListCtn = $('<li>');
