@@ -198,10 +198,12 @@ $(document).ready(function() {
 					queueListItem.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
 						console.log(e.target);
-						console.log(playQueue[songQueueNumber]);
-						player.loadVideoById(playQueue[songQueueNumber].id);
+						player.loadVideoById(playQueue[songQueueNumber].videoId);
 						playQueue = playQueue.splice(songQueueNumber);
 						$(queueList.children()[songQueueNumber]).remove();
+						for (var i = songQueueNumber; i < queueList.children().length; i++) {
+							queueList.children()[i].data('song-queue-number', i);
+						}
 					});
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
