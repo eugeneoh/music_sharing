@@ -94,7 +94,6 @@ $(document).ready(function() {
 		initializePlayQueue();
 		shuffle(playQueue);
 		queueList.empty();
-		player.loadVideoById(playQueue.shift().videoId);
 		for (s in playQueue) {
 			var queueListCtn = $('<li>');
 			var queueListItem = $('<a>', {
@@ -104,6 +103,7 @@ $(document).ready(function() {
 			queueListCtn.append(queueListItem);
 			queueListCtn.appendTo(queueList);
 		}
+		player.loadVideoById(playQueue.shift().videoId);
 	});
 
 	function getPlaylists() {
@@ -184,6 +184,18 @@ $(document).ready(function() {
 				}
 				for (j in tmp) {
 					playQueue.push(tmp.shift());
+				}
+				for (z in playQueue) {
+					var queueListCtn = $('<li>');
+					var queueListItem = $('<a>', {
+						text: playQueue[z].name,
+						id: playQueue[z].videoId
+					});
+					queueListCtn.click(function(e) {
+
+					});
+					queueListCtn.append(queueListItem);
+					queueListCtn.appendTo(queueList);
 				}
 			});
 			songListItem.appendTo(songs);
