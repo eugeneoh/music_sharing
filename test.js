@@ -198,6 +198,7 @@ $(document).ready(function() {
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
 				}
+				console.log(playQueue);
 			});
 			songListItem.appendTo(songs);
 		}
