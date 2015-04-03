@@ -204,6 +204,7 @@ $(document).ready(function() {
 						for (var i = songQueueNumber; i < queueList.children().length; i++) {
 							$(queueList.children()[i]).data('song-queue-number', i);
 						}
+						console.log(queueList.children());
 					});
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
