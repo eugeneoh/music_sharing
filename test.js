@@ -194,10 +194,10 @@ $(document).ready(function() {
 						text: playQueue[z].name,
 						id: playQueue[z].videoId
 					});
-					queueListCtn.data('song-queue-number', z);
-					queueListCtn.click(function(e) {
+					queueListItem.data('song-queue-number', z);
+					queueListItem.click(function(e) {
 						songQueueNumber = $(e.target).data('song-queue-number');
-						console.log($(e.target));
+						console.log(e.target);
 						console.log(songQueueNumber);
 						player.loadVideoById(playQueue[songQueueNumber].id);
 						playQueue = playQueue.splice(songQueueNumber);
