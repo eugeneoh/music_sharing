@@ -110,7 +110,7 @@ $(document).ready(function() {
 		console.log("getPlaylists called");
 		pod.query()
 			.filter({
-				_owner: "http://music.fakepods.com",
+				_owner: "http://music.databox1.com",
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
