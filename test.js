@@ -117,6 +117,7 @@ $(document).ready(function() {
 				console.log(items);
 				playlists.empty();
 				items.forEach(function(item) {
+					console.log(item);
 					addPlaylist(item);
 				});
 			})
