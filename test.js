@@ -13,7 +13,7 @@ $(document).ready(function() {
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
 	var playQueue = [];
-	var userID = '';
+	var currentID = '';
 	// pod.push({isPlaylist: true,
 	// 	name: "good playlist",
 	// 	songs: [
@@ -30,7 +30,7 @@ $(document).ready(function() {
 	// });
 	pod.onLogin(function (userID) {
 		console.log(userID);
-		userID = userID;
+		currentID = userID;
 		getPlaylists();
 	});
 	
@@ -78,7 +78,7 @@ $(document).ready(function() {
 	});
 
 	createPlaylistButton.click(function() {
-		console.log(userID);
+		console.log(currentID);
 		pod.push({
 			isPlaylist: true,
 			name: newPlaylistName.val(),
@@ -115,9 +115,10 @@ $(document).ready(function() {
 
 	function getPlaylists() {
 		console.log("getPlaylists called");
+		console.log(currentID);
 		pod.query()
 			.filter({
-				_owner: userID,
+				_owner: currentID,
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
