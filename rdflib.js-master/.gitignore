@@ -1,7 +1,0 @@
-dist
-parsers/*.js
-tests/*.js
-term.js
-updatesVia.js
-uri.js
-node_modules

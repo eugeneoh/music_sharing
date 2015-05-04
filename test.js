@@ -13,6 +13,7 @@ $(document).ready(function() {
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
 	var playQueue = [];
+	var userID = '';
 	// pod.push({isPlaylist: true,
 	// 	name: "good playlist",
 	// 	songs: [
@@ -29,6 +30,7 @@ $(document).ready(function() {
 	// });
 	pod.onLogin(function (userID) {
 		console.log(userID);
+		userID = userID;
 		getPlaylists();
 	});
 	
@@ -114,7 +116,7 @@ $(document).ready(function() {
 		console.log("getPlaylists called");
 		pod.query()
 			.filter({
-				_owner: "http://music.databox1.com",
+				_owner: userID,
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
