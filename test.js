@@ -27,7 +27,11 @@ $(document).ready(function() {
 	// 		'/m/0122029'
 	// 	]
 	// });
-	getPlaylists();
+	pod.onLogin(function (userID) {
+		console.log(userID);
+		getPlaylists();
+	});
+	
 	// console.log(getPlaylists());
 	var songs = $("#songs");
 	var title = $('#title');
@@ -110,7 +114,7 @@ $(document).ready(function() {
 		console.log("getPlaylists called");
 		pod.query()
 			.filter({
-				_owner: "http://tester.databox1.com",
+				_owner: "http://music.databox1.com",
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
