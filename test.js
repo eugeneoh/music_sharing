@@ -78,7 +78,7 @@ $(document).ready(function() {
 	});
 
 	createPlaylistButton.click(function() {
-		console.log('userID');
+		console.log(userID);
 		pod.push({
 			isPlaylist: true,
 			name: newPlaylistName.val(),
