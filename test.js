@@ -28,12 +28,12 @@ $(document).ready(function() {
 	// 		'/m/0122029'
 	// 	]
 	// });
-	pod.onLogin(function (userID) {
+	pod.onLogin(function(userID) {
 		console.log(userID);
 		currentID = userID;
 		getPlaylists();
 	});
-	
+
 	// console.log(getPlaylists());
 	var songs = $("#songs");
 	var title = $('#title');
@@ -127,9 +127,12 @@ $(document).ready(function() {
 				playlists.empty();
 				items.forEach(function(item) {
 					console.log(item);
-					if (item.canView.indexOf(currentID) > -1) {
-						addPlaylist(item);
+					if (item.canView) {
+						if (item.canView.indexOf(currentID) > -1) {
+							addPlaylist(item);
+						}
 					}
+
 				});
 			})
 			.start();
