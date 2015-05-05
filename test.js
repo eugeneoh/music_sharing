@@ -35,7 +35,8 @@ $(document).ready(function() {
 		getPlaylists();
 	});
 	toPlaylistBtn.click(function() {
-		window.location.href = './playlist.html';
+		window.open('./playlist.html', '_blank');
+		// window.location.href = './playlist.html';
 	});
 
 	// console.log(getPlaylists());
