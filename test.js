@@ -9,6 +9,7 @@ $(document).ready(function() {
 	var searchResults = $('#search-results-list');
 	var shuffleBtn = $('#shuffle-songs');
 	var queueList = $('#queue-list');
+	var toPlaylistBtn = $('#to-playlist-page');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -32,6 +33,9 @@ $(document).ready(function() {
 		console.log(userID);
 		currentID = userID;
 		getPlaylists();
+	});
+	toPlaylistBtn.click(function() {
+		window.location.href = './playlist.html';
 	});
 
 	// console.log(getPlaylists());
