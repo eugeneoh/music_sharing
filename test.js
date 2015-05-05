@@ -120,7 +120,6 @@ $(document).ready(function() {
 		console.log(currentID);
 		pod.query()
 			.filter({
-				canView: currentID,
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
@@ -128,7 +127,9 @@ $(document).ready(function() {
 				playlists.empty();
 				items.forEach(function(item) {
 					console.log(item);
-					addPlaylist(item);
+					if (item.canView.indexOf(currentID) > -1) {
+						addPlaylist(item);
+					});
 				});
 			})
 			.start();
