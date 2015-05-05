@@ -129,7 +129,7 @@ $(document).ready(function() {
 					console.log(item);
 					if (item.canView.indexOf(currentID) > -1) {
 						addPlaylist(item);
-					});
+					}
 				});
 			})
 			.start();
