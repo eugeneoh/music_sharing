@@ -82,6 +82,8 @@ $(document).ready(function() {
 		pod.push({
 			isPlaylist: true,
 			name: newPlaylistName.val(),
+			canEdit: [currentID],
+			canView: [currentID],
 			songs: []
 		});
 	});
@@ -118,7 +120,7 @@ $(document).ready(function() {
 		console.log(currentID);
 		pod.query()
 			.filter({
-				_owner: currentID,
+				canView: currentID,
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
