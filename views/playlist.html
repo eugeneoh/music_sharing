@@ -8,9 +8,56 @@
         <script src="http://crosscloud.org/0.1.3/crosscloud.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- // <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
+        <script src = "../public/javascript/index.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-    YOU ARE AT THE PLAYLIST PAGE
+        <div class="modal fade" id="search-results-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Search Results</h4>
+              </div>
+              <div class="modal-body" id="search-results-list">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-brand" id="title">Playlists</div>
+            <form class="navbar-form navbar-left" id="search-song-box" role="Search">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="song-name" placeholder="Song Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="song-artist" placeholder="Artist Name">
+                </div>
+                <!-- <button type="button" class="btn btn-default" id="search-song">Add Song</button> -->
+                <button id="search-song" type="button" class="btn btn-primary" data-toggle="modal" data-target="#search-results-modal">
+                  Search
+                </button>
+                <button id="shuffle-songs" type="button" class="btn btn-warning"> Shuffle Queue
+                </button>
+            </form>
+          <ul class="nav navbar-nav navbar-right margin-right">
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Queue<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" id="queue-list">
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <ul class="list-group" id="songs">
+        </ul>
+        <ul class="list-group hidden" id="search-songs-results">
+        </ul>
+        <div id="ytplayer"></div>
+        <script src="https://www.youtube.com/iframe_api" type="text/javascript"></script>
     </body>
 </html>
