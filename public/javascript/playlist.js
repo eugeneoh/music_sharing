@@ -55,16 +55,6 @@ $(document).ready(function() {
 		}
 	};
 
-	function getSongsInPlaylist(id) {
-		pod.query()
-			.filter({
-				_id: id
-			})
-			.onAllResults(function(items) {
-				displaySongsInPlaylist(items[0]);
-			}).start();
-	}
-
 	function displaySongsInPlaylist(item) {
 		currentPlaylistSongs = item.songs;
 		console.log(currentPlaylistSongs);
@@ -129,5 +119,22 @@ $(document).ready(function() {
 		// 	queueListCtn.append(queueListItem);
 		// 	queueListCtn.appendTo(queueList);
 		// }
+	}
+
+	function getSongsInPlaylist(id) {
+		pod.query()
+			.filter({
+				_id: id
+			})
+			.onAllResults(function(items) {
+				displaySongsInPlaylist(items[0]);
+			}).start();
+	}
+
+	function initializePlayQueue() {
+		playQueue = [];
+		for (var i = 0; i < currentPlaylistSongs.length; i++) {
+			playQueue.push(currentPlaylistSongs[i]);
+		}
 	}
 });
