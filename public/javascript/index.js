@@ -36,7 +36,7 @@ $(document).ready(function() {
 	});
 	toPlaylistBtn.click(function() {
 		// window.open('./playlist');
-		window.location.href = './views/playlist?id=1111';
+		window.location.href = './views/playlist';
 	});
 
 	// console.log(getPlaylists());
@@ -159,10 +159,12 @@ $(document).ready(function() {
 				playlists.toggleClass('hidden');
 				songs.toggleClass('hidden');
 			} else {
+				window.location.href = './views/playlist';
 				songs.empty();
 				queueList.empty();
 				console.log('different playlist id');
 				console.log($(this).attr('id'));
+				window.location.href = './views/playlist?id='+$(this).attr('id');
 				title.text($(this).text());
 				searchSongs.toggleClass('hidden');
 				createPlaylistBox.toggleClass('hidden');
