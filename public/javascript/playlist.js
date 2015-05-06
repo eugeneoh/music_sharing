@@ -24,6 +24,37 @@ $(document).ready(function() {
 		getSongsInPlaylist(id);
 	});
 
+	window.onYouTubeIframeAPIReady = function() {
+		//console.log('youtube api ready');
+		player = new YT.Player('ytplayer', {
+			height: '366',
+			width: '600',
+			// videoId: 'e-ORhEE9VVg',
+			playerVars: {
+				autoplay: 0,
+				html5: 1
+			},
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+
+		function onPlayerReady(e) {
+			console.log('player is ready');
+		}
+
+		function onPlayerStateChange(e) {
+			console.log('player state has changed');
+			if (e.data === YT.PlayerState.ENDED) {
+				if (playQueue.length > 0) {
+					player.loadVideoById(playQueue.shift().videoId);
+					queueList.children()[0].remove();
+				}
+			}
+		}
+	};
+
 	function getSongsInPlaylist(id) {
 		pod.query()
 			.filter({

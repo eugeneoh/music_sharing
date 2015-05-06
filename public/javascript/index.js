@@ -151,34 +151,34 @@ $(document).ready(function() {
 		});
 		div.click(function() {
 			// console.log($(this).attr('id'));
-			if (searchSongs.data('playlist-id') == $(this).attr('id')) {
-				console.log('same playlist id');
-				title.text($(this).text());
-				searchSongs.toggleClass('hidden');
-				createPlaylistBox.toggleClass('hidden');
-				playlists.toggleClass('hidden');
-				songs.toggleClass('hidden');
-			} else {
-				window.location.href = './views/playlist';
-				songs.empty();
-				queueList.empty();
-				console.log('different playlist id');
-				console.log($(this).attr('id'));
+			// if (searchSongs.data('playlist-id') == $(this).attr('id')) {
+			// 	console.log('same playlist id');
+			// 	title.text($(this).text());
+			// 	searchSongs.toggleClass('hidden');
+			// 	createPlaylistBox.toggleClass('hidden');
+			// 	playlists.toggleClass('hidden');
+			// 	songs.toggleClass('hidden');
+			// } else {
+			// 	window.location.href = './views/playlist';
+			// 	songs.empty();
+			// 	queueList.empty();
+			// 	console.log('different playlist id');
+			// 	console.log($(this).attr('id'));
 				window.location.href = './views/playlist?id='+$(this).attr('id');
-				title.text($(this).text());
-				searchSongs.toggleClass('hidden');
-				createPlaylistBox.toggleClass('hidden');
-				playlists.toggleClass('hidden');
-				songs.toggleClass('hidden');
-				searchSongs.data('playlist-id', $(this).attr('id'));
-				pod.query()
-					.filter({
-						_id: $(this).attr('id')
-					})
-					.onAllResults(function(items) {
-						displaySongsInPlaylist(items[0]);
-					}).start();
-			}
+			// 	title.text($(this).text());
+			// 	searchSongs.toggleClass('hidden');
+			// 	createPlaylistBox.toggleClass('hidden');
+			// 	playlists.toggleClass('hidden');
+			// 	songs.toggleClass('hidden');
+			// 	searchSongs.data('playlist-id', $(this).attr('id'));
+			// 	pod.query()
+			// 		.filter({
+			// 			_id: $(this).attr('id')
+			// 		})
+			// 		.onAllResults(function(items) {
+			// 			displaySongsInPlaylist(items[0]);
+			// 		}).start();
+			// }
 
 		});
 		div.appendTo(playlists);
