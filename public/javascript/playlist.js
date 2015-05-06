@@ -1,4 +1,17 @@
 $(document).ready(function() {
+	var newPlaylistName = $('#playlist-name');
+	var createPlaylistBox = $('#new-playlist-box');
+	var createPlaylistButton = $('#create-playlist');
+	var searchSongs = $('#search-song-box');
+	var searchSongBtn = $('#search-song');
+	var searchResults = $('#search-results-list');
+	var shuffleBtn = $('#shuffle-songs');
+	var queueList = $('#queue-list');
+	var toPlaylistBtn = $('#to-playlist-page');
+	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
+	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
+	var currentPlaylistSongs = [];
+	var playQueue = [];
 	var pod = crosscloud.connect();
 	console.log(window.location.href);
 	var queryString = window.location.href.split('?')[1];
@@ -22,7 +35,6 @@ $(document).ready(function() {
 	}
 
 	function displaySongsInPlaylist(item) {
-		songs.empty();
 		currentPlaylistSongs = item.songs;
 		console.log(currentPlaylistSongs);
 		for (i in currentPlaylistSongs) {
