@@ -38,6 +38,7 @@ a {
 	right: 40px;
 }
 #users-to-invite {
-	width: 600px;
+	width: 592px;
+	margin: 4px;
 	max-width: 600px;
 }
