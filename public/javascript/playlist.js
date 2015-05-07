@@ -87,7 +87,9 @@ $(document).ready(function() {
 		}
 		else {
 			for (var i = 0; i < newUsers.length; i++) {
-				currentEditUsers.push(newUsers[i]);
+				if (currentEditUsers.indexOf(newUsers[i]) == -1) {
+					currentEditUsers.push(newUsers[i]);
+				}
 			}
 			pod.push({
 				_id: playlistId,
