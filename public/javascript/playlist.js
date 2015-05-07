@@ -25,6 +25,10 @@ $(document).ready(function() {
 		getSongsInPlaylist(id);
 	});
 
+	playlistName.click(function() {
+		window.location.href = '../../index';
+	});
+
 	window.onYouTubeIframeAPIReady = function() {
 		//console.log('youtube api ready');
 		player = new YT.Player('ytplayer', {
