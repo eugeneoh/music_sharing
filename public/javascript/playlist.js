@@ -13,6 +13,7 @@ $(document).ready(function() {
 	var canView = $('#can-view-btn');
 	var canEdit = $('#can-edit-btn');
 	var sendInvites = $('#send-invites-btn');
+	var usersToInvite = $('#users-to-invite');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -64,7 +65,10 @@ $(document).ready(function() {
 	});
 
 	sendInvites.click(function() {
+		var newUsers = usersToInvite.val().split(',');
+		console.log(newUsers);
 		if (invitePermissions == 1) {
+
 			// pod.push({
 			// 	_id: playlistId,
 
