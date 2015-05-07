@@ -63,24 +63,23 @@
             <div class="navbar-brand" id="title">Playlists</div>
             <form class="navbar-form navbar-left" id="search-song-box" role="Search">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="song-name" placeholder="Song Name">
+                    <input type="text" class="form-control hidden" id="song-name" placeholder="Song Name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="song-artist" placeholder="Artist Name">
+                    <input type="text" class="form-control hidden" id="song-artist" placeholder="Artist Name">
                 </div>
                 <!-- <button type="button" class="btn btn-default" id="search-song">Add Song</button> -->
                 <button id="search-song" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#search-results-modal">
                   Search
                 </button>
                 <button id="invite" type="button" class="btn btn-info hidden" data-toggle="modal" data-target="#invite-modal">Invite</button>
-                
+                <button id="shuffle-songs" type="button" class="btn btn-warning">Shuffle Queue</button>
             </form>
           <ul class="nav navbar-nav navbar-right margin-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Queue<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu" id="queue-list">
                 </ul>
-                <button id="shuffle-songs" type="button" class="btn btn-warning">Shuffle Queue</button>
               </li>
           </ul>
         </nav>

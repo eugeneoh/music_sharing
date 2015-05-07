@@ -13,6 +13,7 @@ $(document).ready(function() {
 	var canView = $('#can-view-btn');
 	var canEdit = $('#can-edit-btn');
 	var sendInvites = $('#send-invites-btn');
+	var inviteBtn = $('#invite');
 	var usersToInvite = $('#users-to-invite');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
@@ -22,6 +23,7 @@ $(document).ready(function() {
 	var invitePermissions = 1;
 	var queryString = window.location.href.split('?')[1];
 	var playlistId = queryString.split('=')[1];
+	var currentID = '';
 	var currentViewUsers = [];
 	var currentEditUsers = [];
 	console.log(playlistId);
@@ -129,6 +131,10 @@ $(document).ready(function() {
 		console.log(currentEditUsers);
 		playlistName.text(item.name);
 		console.log(currentPlaylistSongs);
+		if (currentEditUsers.indexOf(currentID) > -1) {
+			searchSongBtn.toggleClass('hidden');
+			invite.toggleClass('hidden');
+		}
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
 			var songListItem = $('<li>', {
