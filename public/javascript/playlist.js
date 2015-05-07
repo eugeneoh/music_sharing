@@ -70,7 +70,12 @@ $(document).ready(function() {
 		var newUsers = usersToInvite.val().split(',');
 		for (var i = 0; i < newUsers.length; i++) {
 			newUsers[i] = newUsers[i].trim();
-			currentViewUsers.push(newUsers[i]);
+			if (newUsers[i].substr(newUsers[i].length - 1) != '/') {
+				newUsers[i] = newUsers[i] + '/';
+			}
+			if (currentViewUsers.indexOf(newUsers[i]) == -1) {
+				currentViewUsers.push(newUsers[i]);
+			}
 		}
 		console.log(newUsers);
 		if (invitePermissions == 1) {
