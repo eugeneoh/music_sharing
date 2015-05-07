@@ -133,7 +133,7 @@ $(document).ready(function() {
 		console.log(currentPlaylistSongs);
 		if (currentEditUsers.indexOf(currentID) > -1) {
 			searchSongBtn.toggleClass('hidden');
-			invite.toggleClass('hidden');
+			inviteBtn.toggleClass('hidden');
 		}
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
