@@ -19,6 +19,7 @@ $(document).ready(function() {
 	console.log(queryString);
 	var id = queryString.split('=')[1];
 	console.log(id);
+
 	pod.onLogin(function(userID) {
 		console.log(userID);
 		currentID = userID;
@@ -27,6 +28,17 @@ $(document).ready(function() {
 
 	playlistName.click(function() {
 		window.location.href = '../index';
+	});
+
+	searchSongBtn.click(function() {
+		var songName = $("#song-name").val();
+		var artistName = $('#song-artist').val();
+		$('#song-name').val('');
+		$('#song-artist').val('');
+		searchSong(songName + ' ' + artistName);
+
+		// console.log(searchSongs.data('playlist-id'));
+		// console.log(songsAlreadyInPlaylist);
 	});
 
 	window.onYouTubeIframeAPIReady = function() {
@@ -142,5 +154,56 @@ $(document).ready(function() {
 		for (var i = 0; i < currentPlaylistSongs.length; i++) {
 			playQueue.push(currentPlaylistSongs[i]);
 		}
+	}
+
+	function searchSong(text) {
+		var search_url = YOUTUBE_BASE_URL + 'search?part=snippet&type=video&maxResults=15&order=viewCount';
+		search_url = search_url + '&key=' + ytAPIkey + '&q="' + text + '"';
+		$.get(search_url).
+		success(function(data) {
+			var resultArray = data.items;
+			console.log(resultArray);
+			if (resultArray.length === 0) {
+				searchResults.text('No results found');
+			} else {
+				for (var i = 0; i < resultArray.length; i++) {
+					var searchResultItem = $('<div>', {
+						class: "song-search-result"
+					});
+					var searchResultTitle = $('<span>', {
+						text: resultArray[i].snippet.title
+					});
+					searchResultItem.append(searchResultTitle);
+					var addSongBtnCtn = $('<span>', {
+						class: 'align-right'
+					});
+					var addSongBtn = $('<span>', {
+						class: 'glyphicon glyphicon-plus',
+						id: resultArray[i].snippet.title
+					});
+					addSongBtn.data('videoId', resultArray[i].id.videoId);
+					addSongBtn.click(function(e) {
+						var playlistID = searchSongs.data('playlist-id');
+						var tmp = {
+							name: e.target.id,
+							videoId: $(e.target).data('videoId')
+						}
+						currentPlaylistSongs.push(tmp);
+						playQueue.push(tmp);
+						console.log(currentPlaylistSongs);
+						console.log(playlistID);
+						pod.push({
+							_id: playlistID,
+							songs: currentPlaylistSongs
+						});
+					});
+					addSongBtnCtn.append(addSongBtn);
+					searchResultItem.append(addSongBtnCtn);
+					// searchResultItem.append($('<img>', {src: resultArray[i].snippet.thumbnails.default.url}));
+
+					searchResultItem.appendTo(searchResults);
+				}
+			}
+		});
 	}
 });
