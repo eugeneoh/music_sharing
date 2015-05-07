@@ -10,10 +10,9 @@ $(document).ready(function() {
 	var toPlaylistBtn = $('#to-playlist-page');
 	var songs = $('#songs');
 	var playlistName = $('#title');
-	var canView = $('#can-view-checkbox');
-	var canEdit = $('#can-edit-checkbox');
+	var canView = $('#can-view-btn');
+	var canEdit = $('#can-edit-btn');
 	var sendInvites = $('#send-invites-btn');
-	var invitePermissions = $('#invite-permissions');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -31,13 +30,15 @@ $(document).ready(function() {
 		getSongsInPlaylist(playlistId);
 	});
 
-	// canView.click(function() {
-	// 	console.log(canView.is(':checked'));
-	// });
+	canView.click(function() {
+		canView.toggleClass('active');
+		canView.toggleClass('btn-primary');
+	});
 
-	// canEdit.click(function() {
-	// 	console.log(canEdit.is(':checked'));
-	// });
+	canEdit.click(function() {
+		canView.toggleClass('active');
+		canView.toggleClass('btn-primary');
+	});
 
 	playlistName.click(function() {
 		window.location.href = '../index';
