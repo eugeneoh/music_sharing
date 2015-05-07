@@ -17,13 +17,13 @@ $(document).ready(function() {
 	console.log(window.location.href);
 	var queryString = window.location.href.split('?')[1];
 	console.log(queryString);
-	var id = queryString.split('=')[1];
-	console.log(id);
+	var playlistId = queryString.split('=')[1];
+	console.log(playlistId);
 
 	pod.onLogin(function(userID) {
 		console.log(userID);
 		currentID = userID;
-		getSongsInPlaylist(id);
+		getSongsInPlaylist(playlistId);
 	});
 
 	playlistName.click(function() {
@@ -183,7 +183,7 @@ $(document).ready(function() {
 					});
 					addSongBtn.data('videoId', resultArray[i].id.videoId);
 					addSongBtn.click(function(e) {
-						var playlistID = searchSongs.data('playlist-id');
+						var playlistID = playlistId;
 						var tmp = {
 							name: e.target.id,
 							videoId: $(e.target).data('videoId')
