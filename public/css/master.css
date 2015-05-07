@@ -39,6 +39,6 @@ a {
 }
 #users-to-invite {
 	width: 592px;
-	margin: 4px;
+	margin: 4px 4px 4px 2px;
 	max-width: 600px;
 }
