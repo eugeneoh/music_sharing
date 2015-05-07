@@ -18,6 +18,7 @@ $(document).ready(function() {
 	var currentPlaylistSongs = [];
 	var playQueue = [];
 	var pod = crosscloud.connect();
+	var invitePermissions = 1;
 	console.log(window.location.href);
 	var queryString = window.location.href.split('?')[1];
 	console.log(queryString);
@@ -33,11 +34,17 @@ $(document).ready(function() {
 	canView.click(function() {
 		canView.toggleClass('active');
 		canView.toggleClass('btn-primary');
+		canEdit.toggleClass('active');
+		canEdit.toggleClass('btn-primary');
+		invitePermissions = 1;
 	});
 
 	canEdit.click(function() {
 		canView.toggleClass('active');
 		canView.toggleClass('btn-primary');
+		canEdit.toggleClass('active');
+		canEdit.toggleClass('btn-primary');
+		invitePermissions = 2;
 	});
 
 	playlistName.click(function() {
