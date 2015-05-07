@@ -42,4 +42,5 @@ a {
 	margin: 4px 4px 4px 3px;
 	padding: 4px;
 	max-width: 592px;
+	vertical-align: baseline;
 }
