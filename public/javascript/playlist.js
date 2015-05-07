@@ -19,10 +19,10 @@ $(document).ready(function() {
 	var playQueue = [];
 	var pod = crosscloud.connect();
 	var invitePermissions = 1;
-	console.log(window.location.href);
 	var queryString = window.location.href.split('?')[1];
-	console.log(queryString);
 	var playlistId = queryString.split('=')[1];
+	var currentViewUsers = [];
+	var currentEditUsers = [];
 	console.log(playlistId);
 
 	pod.onLogin(function(userID) {
@@ -64,7 +64,15 @@ $(document).ready(function() {
 	});
 
 	sendInvites.click(function() {
-		console.log(invitePermissions.val());
+		if (invitePermissions == 1) {
+			// pod.push({
+			// 	_id: playlistId,
+
+			// });
+		}
+		else {
+
+		}
 	});
 
 	window.onYouTubeIframeAPIReady = function() {
@@ -101,6 +109,10 @@ $(document).ready(function() {
 	function displaySongsInPlaylist(item) {
 		songs.empty();
 		currentPlaylistSongs = item.songs;
+		currentViewUsers = item.canView;
+		currentEditUsers = item.canEdit;
+		console.log(currentViewUsers);
+		console.log(currentEditUsers);
 		playlistName.text(item.name);
 		console.log(currentPlaylistSongs);
 		for (i in currentPlaylistSongs) {
