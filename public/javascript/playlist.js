@@ -75,6 +75,7 @@ $(document).ready(function() {
 	};
 
 	function displaySongsInPlaylist(item) {
+		songs.empty();
 		currentPlaylistSongs = item.songs;
 		playlistName.text(item.name);
 		console.log(currentPlaylistSongs);
