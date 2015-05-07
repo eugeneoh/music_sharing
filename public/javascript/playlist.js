@@ -34,11 +34,11 @@ $(document).ready(function() {
 	});
 
 	canView.click(function() {
-		console.log(canView.val());
+		console.log(canView.is(':checked'));
 	});
 
 	canEdit.click(function() {
-		console.log(canEdit.val());
+		console.log(canEdit.is(':checked'));
 	});
 
 	searchSongBtn.click(function() {
