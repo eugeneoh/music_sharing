@@ -39,9 +39,9 @@
               </div>
               <textarea autofocus class="modal-body" id="users-to-invite"></textarea>
               <div class="modal-footer">
-                <div class="btn-group" data-toggle="buttons" id="invite-permissions">
-                  <label class="radio" id="can-view-checkbox"><input type="radio" value="1">Can View</label>
-                  <label class="radio" id="can-edit-checkbox"><input type="radio" value="2">Can Edit</label>
+                <div id="invite-permissions" class="btn-group" data-toggle-name="sort_options" data-toggle="buttons-radio">
+                    <button type="button" value="1" data-toggle="button" class="btn active">Can View</button>
+                    <button type="button" value="2" data-toggle="button" class="btn">Can Edit</button>
                 </div>
                 <button type="button" class="btn btn-primary" id="send-invites-btn" data-dismiss="modal">Send Invites</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

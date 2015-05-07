@@ -31,13 +31,13 @@ $(document).ready(function() {
 		getSongsInPlaylist(playlistId);
 	});
 
-	canView.click(function() {
-		console.log(canView.is(':checked'));
-	});
+	// canView.click(function() {
+	// 	console.log(canView.is(':checked'));
+	// });
 
-	canEdit.click(function() {
-		console.log(canEdit.is(':checked'));
-	});
+	// canEdit.click(function() {
+	// 	console.log(canEdit.is(':checked'));
+	// });
 
 	playlistName.click(function() {
 		window.location.href = '../index';
@@ -56,7 +56,7 @@ $(document).ready(function() {
 	});
 
 	sendInvites.click(function() {
-		console.log(invitePermissions.find(":checked").val());
+		console.log(invitePermissions.val());
 	});
 
 	window.onYouTubeIframeAPIReady = function() {
