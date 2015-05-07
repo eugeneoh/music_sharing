@@ -8,6 +8,7 @@ $(document).ready(function() {
 	var shuffleBtn = $('#shuffle-songs');
 	var queueList = $('#queue-list');
 	var toPlaylistBtn = $('#to-playlist-page');
+	var playlistName = $('#title');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -57,6 +58,7 @@ $(document).ready(function() {
 
 	function displaySongsInPlaylist(item) {
 		currentPlaylistSongs = item.songs;
+		playlistName.text(item.name);
 		console.log(currentPlaylistSongs);
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
