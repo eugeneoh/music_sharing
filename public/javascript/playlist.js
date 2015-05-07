@@ -26,7 +26,7 @@ $(document).ready(function() {
 	});
 
 	playlistName.click(function() {
-		window.location.href = '../../index';
+		window.location.href = '../index';
 	});
 
 	window.onYouTubeIframeAPIReady = function() {
