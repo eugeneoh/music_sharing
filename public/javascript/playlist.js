@@ -25,7 +25,7 @@ $(document).ready(function() {
 	var playlistId = queryString.split('=')[1];
 	console.log(playlistId);
 
-	$('#test').bootstrapSwitch();
+	invitePermissions.bootstrapSwitch();
 
 	pod.onLogin(function(userID) {
 		console.log(userID);
