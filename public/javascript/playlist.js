@@ -66,19 +66,26 @@ $(document).ready(function() {
 
 	sendInvites.click(function() {
 		var newUsers = usersToInvite.val().split(',');
-		for (var i=0; i < newUsers.length; i++) {
+		for (var i = 0; i < newUsers.length; i++) {
 			newUsers[i] = newUsers[i].trim();
+			currentViewUsers.push(newUsers[i]);
 		}
 		console.log(newUsers);
 		if (invitePermissions == 1) {
-
-			// pod.push({
-			// 	_id: playlistId,
-
-			// });
+			pod.push({
+				_id: playlistId,
+				canView: currentViewUsers
+			});
 		}
 		else {
-
+			for (var i = 0; i < newUsers.length; i++) {
+				currentEditUsers.push(newUsers[i]);
+			}
+			pod.push({
+				_id: playlistId,
+				canView: currentViewUsers,
+				canEdit: currentEditUsers
+			});
 		}
 	});
 
