@@ -66,6 +66,9 @@ $(document).ready(function() {
 
 	sendInvites.click(function() {
 		var newUsers = usersToInvite.val().split(',');
+		for (var i=0; i < newUsers.length; i++) {
+			newUsers[i] = newUsers[i].trim();
+		}
 		console.log(newUsers);
 		if (invitePermissions == 1) {
 
