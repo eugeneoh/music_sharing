@@ -10,6 +10,8 @@ $(document).ready(function() {
 	var toPlaylistBtn = $('#to-playlist-page');
 	var songs = $('#songs');
 	var playlistName = $('#title');
+	var canView = $('#can-view-checkbox');
+	var canEdit = $('#can-edit-checkbox');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -29,6 +31,14 @@ $(document).ready(function() {
 
 	playlistName.click(function() {
 		window.location.href = '../index';
+	});
+
+	canView.click(function() {
+		console.log(canView.val());
+	});
+
+	canEdit.click(function() {
+		console.log(canEdit.val());
 	});
 
 	searchSongBtn.click(function() {
