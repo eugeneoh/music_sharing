@@ -26,6 +26,7 @@ $(document).ready(function() {
 	var currentID = '';
 	var currentViewUsers = [];
 	var currentEditUsers = [];
+	var editorBtnsShown = false;
 	console.log(playlistId);
 
 	pod.onLogin(function(userID) {
@@ -136,11 +137,12 @@ $(document).ready(function() {
 		console.log(currentEditUsers);
 		playlistName.text(item.name);
 		console.log(currentPlaylistSongs);
-		if (currentEditUsers.indexOf(currentID) > -1) {
+		if (currentEditUsers.indexOf(currentID) > -1 && !editorBtnsShown) {
 			searchSongBtn.toggleClass('hidden');
 			inviteBtn.toggleClass('hidden');
 			$("#song-name").toggleClass('hidden');
 			$("#song-artist").toggleClass('hidden');
+			editorBtnsShown = true;
 		}
 		for (i in currentPlaylistSongs) {
 			var song = currentPlaylistSongs[i];
