@@ -52,7 +52,7 @@
                   <button id="can-view-btn" class="btn btn-default btn-primary active">Can View</button>
                   <button id="can-edit-btn" class="btn btn-default">Can Edit</button>
                 </div>
-                <button type="button" class="btn btn-primary" id="send-invites-btn" data-dismiss="modal">Send Invites</button>
+                <button type="button" class="btn btn-success" id="send-invites-btn" data-dismiss="modal">Send Invites</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
               </div>
@@ -69,18 +69,19 @@
                     <input type="text" class="form-control" id="song-artist" placeholder="Artist Name">
                 </div>
                 <!-- <button type="button" class="btn btn-default" id="search-song">Add Song</button> -->
-                <button id="search-song" type="button" class="btn btn-primary" data-toggle="modal" data-target="#search-results-modal">
+                <button id="search-song" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#search-results-modal">
                   Search
                 </button>
-                <button id="invite" type="button" class="btn btn-info" data-toggle="modal" data-target="#invite-modal">Invite</button>
-                <button id="shuffle-songs" type="button" class="btn btn-warning">Shuffle Queue</button>
+                <button id="invite" type="button" class="btn btn-info hidden" data-toggle="modal" data-target="#invite-modal">Invite</button>
+                
             </form>
           <ul class="nav navbar-nav navbar-right margin-right">
               <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Queue<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu" id="queue-list">
-              </ul>
-            </li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Queue<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu" id="queue-list">
+                </ul>
+                <button id="shuffle-songs" type="button" class="btn btn-warning">Shuffle Queue</button>
+              </li>
           </ul>
         </nav>
         <ul class="list-group" id="songs">
