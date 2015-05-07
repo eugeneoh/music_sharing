@@ -8,6 +8,7 @@ $(document).ready(function() {
 	var shuffleBtn = $('#shuffle-songs');
 	var queueList = $('#queue-list');
 	var toPlaylistBtn = $('#to-playlist-page');
+	var songs = $('#songs');
 	var playlistName = $('#title');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
@@ -35,6 +36,7 @@ $(document).ready(function() {
 		var artistName = $('#song-artist').val();
 		$('#song-name').val('');
 		$('#song-artist').val('');
+		searchResults.empty();
 		searchSong(songName + ' ' + artistName);
 
 		// console.log(searchSongs.data('playlist-id'));
