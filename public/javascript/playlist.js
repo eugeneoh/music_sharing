@@ -12,6 +12,8 @@ $(document).ready(function() {
 	var playlistName = $('#title');
 	var canView = $('#can-view-checkbox');
 	var canEdit = $('#can-edit-checkbox');
+	var sendInvites = $('#send-invites-btn');
+	var invitePermissions = $('#invite-permissions');
 	var ytAPIkey = 'AIzaSyDWuJQ9I7VNlCE1GMswlE0xzqDZgWbzW-E';
 	var YOUTUBE_BASE_URL = 'https://www.googleapis.com/youtube/v3/';
 	var currentPlaylistSongs = [];
@@ -29,16 +31,16 @@ $(document).ready(function() {
 		getSongsInPlaylist(playlistId);
 	});
 
-	playlistName.click(function() {
-		window.location.href = '../index';
-	});
-
 	canView.click(function() {
 		console.log(canView.is(':checked'));
 	});
 
 	canEdit.click(function() {
 		console.log(canEdit.is(':checked'));
+	});
+
+	playlistName.click(function() {
+		window.location.href = '../index';
 	});
 
 	searchSongBtn.click(function() {
@@ -51,6 +53,10 @@ $(document).ready(function() {
 
 		// console.log(searchSongs.data('playlist-id'));
 		// console.log(songsAlreadyInPlaylist);
+	});
+
+	sendInvites.click(function() {
+		console.log(invitePermissions.find(":checked").val());
 	});
 
 	window.onYouTubeIframeAPIReady = function() {

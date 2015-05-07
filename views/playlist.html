@@ -39,9 +39,11 @@
               </div>
               <textarea autofocus class="modal-body" id="users-to-invite"></textarea>
               <div class="modal-footer">
-                <label class="checkbox-inline" id="can-view-checkbox"><input type="checkbox" value="">Can View</label>
-                <label class="checkbox-inline" id="can-edit-checkbox"><input type="checkbox" value="">Can Edit</label>
-                <button type="button" class="btn btn-primary"data-dismiss="modal">Send Invites</button>
+                <div class="form-inline" id="invite-permissions">
+                  <label class="radio" id="can-view-checkbox"><input type="radio" value="1">Can View</label>
+                  <label class="radio" id="can-edit-checkbox"><input type="radio" value="2">Can Edit</label>
+                </div>
+                <button type="button" class="btn btn-primary" id="send-invites-btn" data-dismiss="modal">Send Invites</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
               </div>
