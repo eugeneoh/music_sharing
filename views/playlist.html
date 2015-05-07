@@ -4,6 +4,8 @@
         <title>Share Playlists</title>
         <link rel="stylesheet" href="../public/css/master.css" />
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.js" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/freebase/suggest/4_1/suggest.min.css" />
         <script src="http://crosscloud.org/0.1.3/crosscloud.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -39,10 +41,11 @@
               </div>
               <textarea autofocus class="modal-body" id="users-to-invite"></textarea>
               <div class="modal-footer">
-                <div id="invite-permissions" class="btn-group" data-toggle-name="sort_options" data-toggle="buttons-radio">
+<!--                 <div id="invite-permissions" class="btn-group" data-toggle-name="sort_options" data-toggle="buttons-radio">
                     <button type="button" value="1" data-toggle="button" class="btn active">Can View</button>
                     <button type="button" value="2" data-toggle="button" class="btn">Can Edit</button>
-                </div>
+                </div> -->
+                <input type="checkbox" name="test" checked>
                 <button type="button" class="btn btn-primary" id="send-invites-btn" data-dismiss="modal">Send Invites</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button> -->
