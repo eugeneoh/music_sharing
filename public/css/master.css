@@ -37,3 +37,7 @@ a {
 	position: absolute;
 	right: 40px;
 }
+#users-to-invite {
+	width: 600px;
+	max-width: 600px;
+}
