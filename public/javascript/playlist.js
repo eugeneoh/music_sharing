@@ -204,6 +204,7 @@ $(document).ready(function() {
 				$(this).append(trashIcon);
 			},function(e) {
 				console.log($(this).children());
+				$(this).children()[0].remove();
 			});
 			songListItem.appendTo(songs);
 		}
