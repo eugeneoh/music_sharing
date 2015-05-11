@@ -160,13 +160,14 @@ $(document).ready(function() {
 				initializePlayQueue();
 				player.loadVideoById(e.target.id);
 				// playQueue.shift();
-				var tmp = [];
+				var tmpQ = [];
 				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
-					tmp.push(playQueue.shift());
+					tmpQ.push(playQueue.shift());
+					console.log(tmpQ);
 				}
-				console.log('tmp is: ', tmp);
-				for (var j = 0; j < tmp.length; j++) {
-					playQueue.push(tmp[j]);
+				console.log('tmp is: ', tmpQ);
+				for (var j = 0; j < tmpQ.length; j++) {
+					playQueue.push(tmpQ[j]);
 				}
 				console.log('playQueue is: ', playQueue);
 				for (var z = 0; z < playQueue.length; z++) {
