@@ -193,6 +193,17 @@ $(document).ready(function() {
 				}
 				console.log('playQueue is: ', playQueue);
 			});
+			songListItem.hover(function(e) {
+				var trashIcon = $('<span>', {
+					class: 'glyphicon glyphicon-trash'
+				});
+				trashIcon.click(function() {
+					console.log($(this).parent());
+				});
+				$(this).append(trashIcon);
+			},function(e) {
+				$(this).remove();
+			});
 			songListItem.appendTo(songs);
 		}
 		// for (z in playQueue) {
