@@ -197,8 +197,9 @@ $(document).ready(function() {
 				var trashIcon = $('<span>', {
 					class: 'glyphicon glyphicon-trash'
 				});
-				trashIcon.click(function() {
+				trashIcon.click(function(e) {
 					console.log($(this).parent());
+					e.stopPropagation();
 				});
 				$(this).append(trashIcon);
 			},function(e) {
