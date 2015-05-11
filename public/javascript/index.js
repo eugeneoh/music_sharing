@@ -68,14 +68,7 @@ $(document).ready(function() {
 			}
 		}
 	};
-	title.click(function() {
-		playlists.toggleClass('hidden');
-		createPlaylistBox.toggleClass('hidden');
-		songs.toggleClass('hidden');
-		searchSongs.toggleClass('hidden');
-		title.text('My Playlists');
-	});
-
+	
 	createPlaylistButton.click(function() {
 		pod.push({
 			isPlaylist: true,
@@ -84,33 +77,6 @@ $(document).ready(function() {
 			canView: [currentID],
 			songs: []
 		});
-	});
-
-	searchSongBtn.click(function() {
-		var songName = $("#song-name").val();
-		var artistName = $('#song-artist').val();
-		$('#song-name').val('');
-		$('#song-artist').val('');
-		searchSong(songName + ' ' + artistName);
-
-		// console.log(searchSongs.data('playlist-id'));
-		// console.log(songsAlreadyInPlaylist);
-	});
-
-	shuffleBtn.click(function() {
-		initializePlayQueue();
-		shuffle(playQueue);
-		queueList.empty();
-		for (s in playQueue) {
-			var queueListCtn = $('<li>');
-			var queueListItem = $('<a>', {
-				text: playQueue[s].name,
-				id: playQueue[s].videoId
-			});
-			queueListCtn.append(queueListItem);
-			queueListCtn.appendTo(queueList);
-		}
-		player.loadVideoById(playQueue.shift().videoId);
 	});
 
 	function getPlaylists() {
@@ -174,32 +140,6 @@ $(document).ready(function() {
 		div.appendTo(playlists);
 	}
 
-	function shuffle(array) {
-		var currentIndex = array.length,
-			temporaryValue, randomIndex;
-
-		// While there remain elements to shuffle...
-		while (0 !== currentIndex) {
-
-			// Pick a remaining element...
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-
-			// And swap it with the current element.
-			temporaryValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = temporaryValue;
-		}
-
-		return array;
-	}
-
-	function initializePlayQueue() {
-			playQueue = [];
-			for (var i = 0; i < currentPlaylistSongs.length; i++) {
-				playQueue.push(currentPlaylistSongs[i]);
-			}
-		}
 		// var query = [{"id":null, "type":"/music/artist", "name":'Britney Spears'}];
 		// 	var service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
 		// 	$.getJSON(service_url + '?callback=?', {query:JSON.stringify(query)}, function(response) {
