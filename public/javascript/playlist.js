@@ -202,6 +202,10 @@ $(document).ready(function() {
 					console.log($(this).parent().data('song-order-number'));
 					currentPlaylistSongs.splice($(this).parent().data('song-order-number'),1);
 					console.log(currentPlaylistSongs);
+					pod.push({
+						_id: playlistId,
+						songs: currentPlaylistSongs
+					});
 					e.stopPropagation();
 				});
 				$(this).append(trashIcon);
