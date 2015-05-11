@@ -33,6 +33,7 @@ a {
 .align-right-trash {
 	position: absolute;
 	right: 2px;
+	top: 7px;
 }
 .glyphicon {
 	cursor: pointer;
