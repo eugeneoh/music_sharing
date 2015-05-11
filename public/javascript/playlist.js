@@ -161,6 +161,7 @@ $(document).ready(function() {
 				player.loadVideoById(e.target.id);
 				// playQueue.shift();
 				var tmpQ = [];
+				playQueue.splice($(e.target).data('song-order-number'));
 				for (var i = 0; i < $(e.target).data('song-order-number'); i++) {
 					tmpQ.push(playQueue.shift());
 					console.log(tmpQ);
