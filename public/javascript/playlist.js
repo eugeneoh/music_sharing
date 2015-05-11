@@ -146,14 +146,14 @@ $(document).ready(function() {
 			$("#song-artist").toggleClass('hidden');
 			editorBtnsShown = true;
 		}
-		for (i in currentPlaylistSongs) {
-			var song = currentPlaylistSongs[i];
+		for (var p = 0; p < currentPlaylistSongs.length; p++) {
+			var song = currentPlaylistSongs[p];
 			var songListItem = $('<li>', {
 				text: song.name,
 				id: song.videoId,
 				class: "list-group-item"
 			});
-			songListItem.data('song-order-number', i);
+			songListItem.data('song-order-number', p);
 			playQueue.push(song);
 			songListItem.click(function(e) {
 				queueList.empty();
@@ -183,9 +183,9 @@ $(document).ready(function() {
 						playQueue = playQueue.splice(songQueueNumber);
 						console.log(playQueue);
 						$(queueList.children()[songQueueNumber]).remove();
-						for (var i = songQueueNumber; i < queueList.children().length; i++) {
-							console.log(i);
-							$($(queueList.children()[i]).children()[0]).data('song-queue-number', i);
+						for (var l = songQueueNumber; l < queueList.children().length; l++) {
+							console.log(l);
+							$($(queueList.children()[l]).children()[0]).data('song-queue-number', l);
 						}
 						console.log(queueList.children());
 					});
