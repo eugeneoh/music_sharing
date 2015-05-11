@@ -198,8 +198,8 @@ $(document).ready(function() {
 					class: 'glyphicon glyphicon-trash align-right-trash'
 				});
 				trashIcon.click(function(e) {
-					console.log($(this).parent());
 					console.log(currentPlaylistSongs);
+					console.log($(this).parent().data('song-order-number'));
 					e.stopPropagation();
 				});
 				$(this).append(trashIcon);
