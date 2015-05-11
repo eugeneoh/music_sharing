@@ -200,6 +200,8 @@ $(document).ready(function() {
 				trashIcon.click(function(e) {
 					console.log(currentPlaylistSongs);
 					console.log($(this).parent().data('song-order-number'));
+					currentPlaylistSongs.splice($(this).parent().data('song-order-number'),1);
+					console.log(currentPlaylistSongs);
 					e.stopPropagation();
 				});
 				$(this).append(trashIcon);
