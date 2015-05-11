@@ -198,10 +198,7 @@ $(document).ready(function() {
 					class: 'glyphicon glyphicon-trash align-right-trash'
 				});
 				trashIcon.click(function(e) {
-					console.log(currentPlaylistSongs);
-					console.log($(this).parent().data('song-order-number'));
 					currentPlaylistSongs.splice($(this).parent().data('song-order-number'),1);
-					console.log(currentPlaylistSongs);
 					pod.push({
 						_id: playlistId,
 						songs: currentPlaylistSongs
@@ -210,7 +207,6 @@ $(document).ready(function() {
 				});
 				$(this).append(trashIcon);
 			},function(e) {
-				console.log($(this).children());
 				$(this).children()[0].remove();
 			});
 			songListItem.appendTo(songs);
