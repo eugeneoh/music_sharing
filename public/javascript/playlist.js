@@ -195,10 +195,11 @@ $(document).ready(function() {
 			});
 			songListItem.hover(function(e) {
 				var trashIcon = $('<span>', {
-					class: 'glyphicon glyphicon-trash'
+					class: 'glyphicon glyphicon-trash align-right-trash'
 				});
 				trashIcon.click(function(e) {
 					console.log($(this).parent());
+					console.log(currentPlaylistSongs);
 					e.stopPropagation();
 				});
 				$(this).append(trashIcon);
