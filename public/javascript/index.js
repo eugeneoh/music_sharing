@@ -29,7 +29,6 @@ $(document).ready(function() {
 	// 	]
 	// });
 	pod.onLogin(function(userID) {
-		console.log(userID);
 		currentID = userID;
 		getPlaylists();
 	});
@@ -78,7 +77,6 @@ $(document).ready(function() {
 	});
 
 	createPlaylistButton.click(function() {
-		console.log(currentID);
 		pod.push({
 			isPlaylist: true,
 			name: newPlaylistName.val(),
@@ -116,17 +114,13 @@ $(document).ready(function() {
 	});
 
 	function getPlaylists() {
-		console.log("getPlaylists called");
-		console.log(currentID);
 		pod.query()
 			.filter({
 				isPlaylist: true
 			})
 			.onAllResults(function(items) {
-				console.log(items);
 				playlists.empty();
 				items.forEach(function(item) {
-					console.log(item);
 					if (item.canView) {
 						if (item.canView.indexOf(currentID) > -1) {
 							addPlaylist(item);
@@ -139,6 +133,7 @@ $(document).ready(function() {
 	}
 
 	function addPlaylist(item) {
+		console.log(item);
 		var div = $('<li>', {
 			text: item.name,
 			id: item._id,
