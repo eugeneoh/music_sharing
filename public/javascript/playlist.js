@@ -168,6 +168,7 @@ $(document).ready(function() {
 				for (var j = 0; j < tmp.length; j++) {
 					playQueue.push(tmp[j]);
 				}
+				console.log('playQueue is: ', playQueue);
 				for (var z = 0; z < playQueue.length; z++) {
 					var queueListCtn = $('<li>');
 					var queueListItem = $('<a>', {
@@ -191,7 +192,6 @@ $(document).ready(function() {
 					queueListCtn.append(queueListItem);
 					queueListCtn.appendTo(queueList);
 				}
-				console.log('playQueue is: ', playQueue);
 			});
 			if (editorBtnsShown) {
 				songListItem.hover(function(e) {
