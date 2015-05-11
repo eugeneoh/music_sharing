@@ -193,22 +193,24 @@ $(document).ready(function() {
 				}
 				console.log('playQueue is: ', playQueue);
 			});
-			songListItem.hover(function(e) {
-				var trashIcon = $('<span>', {
-					class: 'glyphicon glyphicon-trash align-right-trash'
-				});
-				trashIcon.click(function(e) {
-					currentPlaylistSongs.splice($(this).parent().data('song-order-number'),1);
-					pod.push({
-						_id: playlistId,
-						songs: currentPlaylistSongs
+			if (editorBtnsShown) {
+				songListItem.hover(function(e) {
+					var trashIcon = $('<span>', {
+						class: 'glyphicon glyphicon-trash align-right-trash'
 					});
-					e.stopPropagation();
+					trashIcon.click(function(e) {
+						currentPlaylistSongs.splice($(this).parent().data('song-order-number'),1);
+						pod.push({
+							_id: playlistId,
+							songs: currentPlaylistSongs
+						});
+						e.stopPropagation();
+					});
+					$(this).append(trashIcon);
+				},function(e) {
+					$(this).children()[0].remove();
 				});
-				$(this).append(trashIcon);
-			},function(e) {
-				$(this).children()[0].remove();
-			});
+			}
 			songListItem.appendTo(songs);
 		}
 		// for (z in playQueue) {
