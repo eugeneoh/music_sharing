@@ -202,7 +202,7 @@ $(document).ready(function() {
 				});
 				$(this).append(trashIcon);
 			},function(e) {
-				$(this).empty();
+				console.log($(this).children());
 			});
 			songListItem.appendTo(songs);
 		}
