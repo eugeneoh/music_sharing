@@ -99,6 +99,22 @@ $(document).ready(function() {
 		}
 	});
 
+	shuffleBtn.click(function() {
+		initializePlayQueue();
+		shuffle(playQueue);
+		queueList.empty();
+		for (s in playQueue) {
+			var queueListCtn = $('<li>');
+			var queueListItem = $('<a>', {
+				text: playQueue[s].name,
+				id: playQueue[s].videoId
+			});
+			queueListCtn.append(queueListItem);
+			queueListCtn.appendTo(queueList);
+		}
+		player.loadVideoById(playQueue.shift().videoId);
+	});
+
 	window.onYouTubeIframeAPIReady = function() {
 		//console.log('youtube api ready');
 		player = new YT.Player('ytplayer', {
