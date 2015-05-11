@@ -102,6 +102,7 @@ $(document).ready(function() {
 	shuffleBtn.click(function() {
 		initializePlayQueue();
 		shuffle(playQueue);
+		player.loadVideoById(playQueue.shift().videoId);
 		queueList.empty();
 		for (s in playQueue) {
 			var queueListCtn = $('<li>');
@@ -112,7 +113,6 @@ $(document).ready(function() {
 			queueListCtn.append(queueListItem);
 			queueListCtn.appendTo(queueList);
 		}
-		player.loadVideoById(playQueue.shift().videoId);
 	});
 
 	window.onYouTubeIframeAPIReady = function() {
@@ -311,7 +311,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
+
 	function shuffle(array) {
 		var currentIndex = array.length,
 			temporaryValue, randomIndex;
